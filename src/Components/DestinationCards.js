@@ -62,6 +62,7 @@ function DestinationCards() {
             <option value="Petrol">Petrol</option>
             <option value="CNG">CNG</option>
             <option value="Diesel">Diesel</option>
+            <option value="Electric">Electric</option>
           </select>
         </div>
         

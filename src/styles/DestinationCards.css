@@ -1,5 +1,6 @@
 .filter-container {
   width: 90%;
+  max-width: 1200px;
   margin: 40px auto;
   text-align: center;
 }
@@ -8,6 +9,7 @@
   font-size: 28px;
   margin-bottom: 25px;
   color: #DC2626;
+  font-weight: 700;
 }
 
 .filters {
@@ -22,21 +24,23 @@
   display: flex;
   align-items: center;
   gap: 10px;
-
   background: white;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
-
   padding: 12px 15px;
   min-width: 220px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s ease;
+}
 
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+.filter-box:focus-within {
+  border-color: #DC2626;
 }
 
 /* Icons */
 .filter-icon {
   font-size: 20px;
-  color:#DC2626;
+  color: #DC2626;
   pointer-events: none;
 }
 
@@ -48,102 +52,124 @@
   font-size: 15px;
   background: transparent;
   cursor: pointer;
+  color: #1e293b;
+  font-weight: 500;
 }
 
-/* Find Drivers Button */
-.driver-btn {
-  margin-top: 30px;
-  background:#DC2626;
-  color: white;
-  border: none;
-  padding: 14px 35px;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.driver-btn:hover {
-  background: #DC2626;
-  transform: translateY(-2px);
-}
-
-.driver-btn:active {
-  transform: translateY(0);
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .filters {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .filter-box {
-    width: 90%;
-    max-width: 350px;
-  }
-
-  .driver-btn {
-    width: 90%;
-    max-width: 350px;
-  }
-}
+/* Vehicle Grid Layout */
 .vehicle-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-
   margin-top: 35px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
+/* Cleaned Vehicle Card */
 .vehicle-card {
   background: white;
-  border-radius: 15px;
-
-  padding: 20px;
-
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px 20px;
   text-align: center;
-
   cursor: pointer;
-
-  border: 2px solid transparent;
-
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-
-  transition: all 0.3s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
-.vehicle-card:hover {
-  transform: translateY(-5px);
-
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+.vehicle-card:hover:not(.selected) {
+  border-color: #cbd5e1;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
 }
 
+/* 🚀 Selected Highlight State */
 .vehicle-card.selected {
-  border: 2px solid#DC2626;
+  border-color: #DC2626;
+  background-color: #fff5f5;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px -3px rgba(220, 38, 38, 0.15);
 }
 
 .vehicle-icon {
   font-size: 40px;
   color: #DC2626;
+  margin-bottom: 12px;
+  transition: transform 0.2s ease;
+}
 
-  margin-bottom: 10px;
+.vehicle-card.selected .vehicle-icon {
+  transform: scale(1.1);
 }
 
 .vehicle-card h3 {
-  color: #000000;;
-  margin-bottom: 8px;
+  color: #1e293b;
+  margin-bottom: 6px;
+  font-size: 18px;
 }
 
 .vehicle-card p {
-  color: #666;
-  margin-bottom: 8px;
+  color: #64748b;
+  font-size: 14px;
+  margin: 0;
 }
 
-.vehicle-card span {
-  font-weight: bold;
-  color: #DC2626;
+/* Error/Validation Text */
+.error-text {
+  color: #ef4444;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 15px 0 0 0;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Upgraded Find Drivers Button */
+.driver-btn {
+  margin-top: 20px;
+  background: #DC2626;
+  color: white;
+  border: none;
+  padding: 14px 45px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
+}
+
+.driver-btn:hover:not(:disabled) {
+  background: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+}
+
+.driver-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* 🔒 Professional Disabled Button State */
+.driver-btn:disabled {
+  background: #cbd5e1;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    align-items: center;
+  }
+  .filter-box, .driver-btn {
+    width: 100%;
+    max-width: 350px;
+  }
 }
