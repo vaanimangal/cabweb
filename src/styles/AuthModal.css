@@ -52,3 +52,32 @@
   color: blue;
   text-decoration: underline;
 }
+/* The full-screen dark background */
+.auth-modal-overlay, .modal-overlay { 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); /* This dims the page */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* 👈 CHANGE THIS: Ensure it has a massive layer priority */
+  z-index: 9999 !important; 
+}
+
+/* The actual white box containing login inputs */
+.auth-modal-content, .modal-content {
+  background: white;
+  z-index: 10000 !important; /* Must be higher than the overlay */
+}
+/* This ensures the heading style is locked down exactly the same everywhere */
+.modal-box h2 {
+  color: #dc3545 !important;       /* Forces the Red theme color from your buttons */
+  text-align: center !important;   /* Centers the "Login" / "Register" text */
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-family: sans-serif;
+}

@@ -1,7 +1,9 @@
+import React, { useState } from "react"; // 👈 FIX: Make sure 'useState' is included here!
 import "../styles/AuthModal.css";
-import { useState } from "react";
 
-function AuthModal({ type, onClose }) {
+function AuthModal({ type, onClose, onSuccess }) {
+  // ... rest of your code stays exactly the same
+  // function AuthModal({ type, onClose, onSuccess }) { 
   const isRegister = type === "register";
 
   const [step, setStep] = useState(1);
@@ -10,7 +12,6 @@ function AuthModal({ type, onClose }) {
   const [otp, setOtp] = useState("");
   const [terms, setTerms] = useState(false);
 
-  // ✅ validation
   const isValidMobile = /^[0-9]{10}$/.test(mobile);
 
   const sendOtp = () => {
@@ -29,6 +30,12 @@ function AuthModal({ type, onClose }) {
 
     console.log("OTP Verified");
     alert(`${type} successful`);
+    
+    // 👈 2. Trigger the success callback if it was passed to the modal
+    if (onSuccess) {
+      onSuccess(); 
+    }
+    
     onClose();
   };
 

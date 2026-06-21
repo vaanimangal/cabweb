@@ -7,6 +7,8 @@ import DestinationCards from "./Components/DestinationCards";
 import DriverLoading from "./Components/DriverLoading"; // 👈 Import your new page component
 
 function App() {
+  // 1. Track if the user is authenticated (set to false by default)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [tripData, setTripData] = useState({
     pickup: "",
     destination: "",
@@ -16,7 +18,8 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
+      {/* 👈 Added login props to Navbar so it can update its login/logout buttons */}
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       
       <Routes>
         {/* 1. Main Home Layout containing your entire booking flow */}
@@ -26,7 +29,8 @@ function App() {
             <>
               <Hero />
               <BookingForm trip={tripData} setTrip={setTripData} />
-              <DestinationCards />
+              {/* 👈 Added login props here to link it with the compulsory check on button click */}
+              <DestinationCards isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             </>
           } 
         />

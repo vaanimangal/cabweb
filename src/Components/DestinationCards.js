@@ -2,9 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaCar, FaGasPump } from "react-icons/fa";
 import { MdLanguage, MdAccessible } from "react-icons/md";
+import AuthModal from "./AuthModal"; // 👈 Your existing modal is safely imported here
+
 import "../styles/DestinationCards.css";
 
-function DestinationCards() {
+function DestinationCards({ isLoggedIn, setIsLoggedIn }) { // 👈 Accepts props from App.js
   const navigate = useNavigate();
   
   const [language, setLanguage] = useState("");
@@ -12,7 +14,22 @@ function DestinationCards() {
   const [fuel, setFuel] = useState("");
   const [selectedVehicle, setSelectedVehicle] = useState("");
   
+  // 👈 New internal state to toggle the modal if they aren't logged in
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  
   const isFormValid = Boolean(selectedVehicle) && Boolean(fuel);
+
+  // 👈 Extracted the navigation logic so it can be reused safely
+  const handleNavigation = () => {
+    navigate("/find-driver", {
+      state: {
+        vehicle: selectedVehicle,
+        fuel: fuel,
+        language: language,
+        special: special
+      }
+    });
+  };
 
   return (
     <div className="filter-container">
@@ -114,19 +131,27 @@ function DestinationCards() {
         onClick={() => {
           if (!isFormValid) return;
           
-          // Smoothly transition to the next page and send selected states along
-          navigate("/find-driver", {
-            state: {
-              vehicle: selectedVehicle,
-              fuel: fuel,
-              language: language,
-              special: special
-            }
-          });
+          if (!isLoggedIn) {
+            setShowAuthModal(true);
+          } else {
+            handleNavigation();
+          }
         }}
       >
         Find Drivers
       </button>
+
+      {/* 👈 Now it behaves EXACTLY like your navbar pop up setup */}
+      {showAuthModal && (
+        <AuthModal 
+          type="login"
+          onClose={() => setShowAuthModal(false)} // If they click ✕, it just closes safely!
+          onSuccess={() => {
+            setIsLoggedIn(true); // Only runs when OTP is verified successfully!
+            handleNavigation();  // Pushes them straight to the driver page
+          }}
+        />
+      )}
     </div>
   );
 }
