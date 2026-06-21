@@ -1,11 +1,12 @@
-import { useState } from "react"; // 👈 1. Import useState
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // 👈 Import Router utilities
 import Navbar from "./Components/Navbar";
 import Hero from "./Components/Hero";
 import BookingForm from "./Components/BookingForm";
 import DestinationCards from "./Components/DestinationCards";
+import DriverLoading from "./Components/DriverLoading"; // 👈 Import your new page component
 
 function App() {
-  // 👈 2. Create the state for your booking form here
   const [tripData, setTripData] = useState({
     pickup: "",
     destination: "",
@@ -14,13 +15,26 @@ function App() {
   });
 
   return (
-    <>
+    <Router>
       <Navbar />
-      <Hero />
-      {/* 👈 3. Pass tripData and setTripData as props right here */}
-      <BookingForm trip={tripData} setTrip={setTripData} />
-      <DestinationCards />
-    </>
+      
+      <Routes>
+        {/* 1. Main Home Layout containing your entire booking flow */}
+        <Route 
+          path="/" 
+          element={
+            <>
+              <Hero />
+              <BookingForm trip={tripData} setTrip={setTripData} />
+              <DestinationCards />
+            </>
+          } 
+        />
+
+        {/* 2. Isolated Search/Driver view */}
+        <Route path="/find-driver" element={<DriverLoading />} />
+      </Routes>
+    </Router>
   );
 }
 

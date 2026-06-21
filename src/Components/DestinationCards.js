@@ -1,14 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaCar, FaGasPump } from "react-icons/fa";
 import { MdLanguage, MdAccessible } from "react-icons/md";
 import "../styles/DestinationCards.css";
 
 function DestinationCards() {
+  const navigate = useNavigate();
   
   const [language, setLanguage] = useState("");
   const [special, setSpecial] = useState("");
   const [fuel, setFuel] = useState("");
   const [selectedVehicle, setSelectedVehicle] = useState("");
+  
   const isFormValid = Boolean(selectedVehicle) && Boolean(fuel);
 
   return (
@@ -16,13 +19,9 @@ function DestinationCards() {
       <h2>Choose Your Ride</h2>
 
       <div className="filters">
-
-        
-
         {/* Language */}
         <div className="filter-box">
           <MdLanguage className="filter-icon" />
-
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
@@ -37,7 +36,6 @@ function DestinationCards() {
         {/* Special */}
         <div className="filter-box">
           <MdAccessible className="filter-icon" />
-
           <select
             value={special}
             onChange={(e) => setSpecial(e.target.value)}
@@ -53,7 +51,6 @@ function DestinationCards() {
         {/* Fuel */}
         <div className="filter-box">
           <FaGasPump className="filter-icon" />
-
           <select
             value={fuel}
             onChange={(e) => setFuel(e.target.value)}
@@ -65,74 +62,71 @@ function DestinationCards() {
             <option value="Electric">Electric</option>
           </select>
         </div>
-        
       </div>
+
       <div className="vehicle-grid">
+        <div
+          className={`vehicle-card ${selectedVehicle === "Sedan" ? "selected" : ""}`}
+          onClick={() => setSelectedVehicle("Sedan")}
+        >
+          <FaCar className="vehicle-icon" />
+          <h3>Sedan</h3>
+          <p>4 Seats</p>
+        </div>
 
-  <div
-    className={`vehicle-card ${
-      selectedVehicle === "Sedan" ? "selected" : ""
-    }`}
-    onClick={() => setSelectedVehicle("Sedan")}
-  >
-    <FaCar className="vehicle-icon" />
-    <h3>Sedan</h3>
-    <p>4 Seats</p>
-    
-  </div>
+        <div
+          className={`vehicle-card ${selectedVehicle === "SUV" ? "selected" : ""}`}
+          onClick={() => setSelectedVehicle("SUV")}
+        >
+          <FaCar className="vehicle-icon" />
+          <h3>SUV</h3>
+          <p>7 Seats</p>
+        </div>
 
-  <div
-    className={`vehicle-card ${
-      selectedVehicle === "SUV" ? "selected" : ""
-    }`}
-    onClick={() => setSelectedVehicle("SUV")}
-  >
-    <FaCar className="vehicle-icon" />
-    <h3>SUV</h3>
-    <p>7 Seats</p>
-    
-  </div>
+        <div
+          className={`vehicle-card ${selectedVehicle === "Innova" ? "selected" : ""}`}
+          onClick={() => setSelectedVehicle("Innova")}
+        >
+          <FaCar className="vehicle-icon" />
+          <h3>Innova</h3>
+          <p>7 Seats</p>
+        </div>
 
-  <div
-    className={`vehicle-card ${
-      selectedVehicle === "Innova" ? "selected" : ""
-    }`}
-    onClick={() => setSelectedVehicle("Innova")}
-  >
-    <FaCar className="vehicle-icon" />
-    <h3>Innova</h3>
-    <p>7 Seats</p>
-    
-  </div>
+        <div
+          className={`vehicle-card ${selectedVehicle === "Hatchback" ? "selected" : ""}`}
+          onClick={() => setSelectedVehicle("Hatchback")}
+        >
+          <FaCar className="vehicle-icon" />
+          <h3>Hatchback</h3>
+          <p>4 Seats</p>
+        </div>
+      </div>
 
-  <div
-    className={`vehicle-card ${
-      selectedVehicle === "Hatchback" ? "selected" : ""
-    }`}
-    onClick={() => setSelectedVehicle("Hatchback")}
-  >
-    <FaCar className="vehicle-icon" />
-    <h3>Hatchback</h3>
-    <p>4 Seats</p>
-    
-  </div>
+      {!isFormValid && (
+        <p className="error-text">
+          Please select both Vehicle and Fuel type
+        </p>
+      )}
 
-</div>
-{!isFormValid && (
-  <p className="error-text">
-    Please select both Vehicle and Fuel type
-  </p>
-)}
       <button
-  className="driver-btn"
-  disabled={!isFormValid}
-  onClick={() => {
-    if (!isFormValid) return;
-    console.log("Searching drivers...");
-  }}
->
-  Find Drivers
-</button>
+        className="driver-btn"
+        disabled={!isFormValid}
+        onClick={() => {
+          if (!isFormValid) return;
+          
+          // Smoothly transition to the next page and send selected states along
+          navigate("/find-driver", {
+            state: {
+              vehicle: selectedVehicle,
+              fuel: fuel,
+              language: language,
+              special: special
+            }
+          });
+        }}
+      >
+        Find Drivers
+      </button>
     </div>
   );
 }
