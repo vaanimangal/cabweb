@@ -29,7 +29,7 @@ function DriverLoading() {
         </div>
       ) : (
         <div className="success-state">
-          <h2>Driver Found! 🎉</h2>
+          <h2>Driver Found! </h2>
           <div className="driver-card-mock">
             <div className="driver-avatar">👨🏻‍✈️</div>
             <div className="driver-details">
