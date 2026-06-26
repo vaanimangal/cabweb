@@ -1,5 +1,11 @@
-import React, { useState } from "react"; // 👈 FIX: Make sure 'useState' is included here!
+import React, { useState } from "react";
 import "../styles/AuthModal.css";
+
+import { auth } from "../firebase/firebase";
+import {
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+} from "firebase/auth";
 
 function AuthModal({ type, onClose, onSuccess }) {
   // ... rest of your code stays exactly the same
@@ -12,32 +18,81 @@ function AuthModal({ type, onClose, onSuccess }) {
   const [otp, setOtp] = useState("");
   const [terms, setTerms] = useState(false);
 
+  const [confirmationResult, setConfirmationResult] = useState(null);
+
   const isValidMobile = /^[0-9]{10}$/.test(mobile);
+  
+const sendOtp = async () => {
+  if (!isValidMobile) return;
 
-  const sendOtp = () => {
-    if (!isValidMobile) return;
-    console.log("Send OTP to:", mobile);
-    setStep(2);
-  };
+  try {
+    const container = document.getElementById("recaptcha-container");
 
-  const verifyOtp = () => {
-    if (!isValidMobile) return;
-
-    if (isRegister && !terms) {
-      alert("Please accept Terms & Conditions");
+    if (!container) {
+      alert("reCAPTCHA container not found.");
       return;
     }
 
-    console.log("OTP Verified");
-    alert(`${type} successful`);
-    
-    // 👈 2. Trigger the success callback if it was passed to the modal
-    if (onSuccess) {
-      onSuccess(); 
+   if (!window.recaptchaVerifier) {
+  const container = document.getElementById("recaptcha-container");
+
+  window.recaptchaVerifier = new RecaptchaVerifier(auth, container, {
+    size: "invisible",
+  });
+}
+
+const appVerifier = window.recaptchaVerifier;
+
+
+
+    const result = await signInWithPhoneNumber(
+      auth,
+      `+91${mobile}`,
+      window.recaptchaVerifier
+    );
+
+    setConfirmationResult(result);
+    setStep(2);
+
+    alert("OTP sent successfully!");
+  } catch (error) {
+    console.error("Firebase OTP Error:", error);
+    alert(error.message);
+  }
+};
+
+ const verifyOtp = async () => {
+  if (!otp) {
+    alert("Enter OTP");
+    return;
+  }
+
+  if (isRegister && !terms) {
+    alert("Please accept Terms & Conditions");
+    return;
+  }
+
+  try {
+    if (!confirmationResult) {
+      alert("OTP session expired. Please resend OTP.");
+      return;
     }
-    
+
+    // REAL OTP verification
+    await confirmationResult.confirm(otp);
+
+    alert(`${type} successful`);
+
+    if (onSuccess) {
+      onSuccess();
+    }
+
     onClose();
-  };
+  } catch (error) {
+    console.error(error);
+    alert("Invalid OTP. Please try again.");
+  }
+};
 
   return (
     <div className="modal-overlay">
@@ -108,7 +163,7 @@ function AuthModal({ type, onClose, onSuccess }) {
             <button onClick={verifyOtp}>Verify OTP</button>
           </>
         )}
-
+      <div id="recaptcha-container"></div>
         <button className="close-btn" onClick={onClose}>
           ✕
         </button>
