@@ -23,6 +23,10 @@ function AuthModal({ type, onClose, onSuccess }) {
   const isValidMobile = /^[0-9]{10}$/.test(mobile);
   
 const sendOtp = async () => {
+  if (isRegister && name.trim() === "") {
+    alert("Please enter your name to register.");
+    return;
+  }
   if (!isValidMobile) return;
 
   try {
@@ -84,7 +88,7 @@ const appVerifier = window.recaptchaVerifier;
     alert(`${type} successful`);
 
     if (onSuccess) {
-      onSuccess();
+      onSuccess(isRegister ? name : null);
     }
 
     onClose();
@@ -104,10 +108,12 @@ const appVerifier = window.recaptchaVerifier;
           <>
             {isRegister && (
               <input
-                placeholder="Full Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+               type="text" // Added type for accessibility
+               placeholder="Enter Full Name"
+               value={name}
+               onChange={(e) => setName(e.target.value)}
+               required={isRegister} // Ensure they fill it out
+             />
             )}
 
             <input

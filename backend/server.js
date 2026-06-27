@@ -3,6 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
 const connectDB = require("./config/db");
+const authRoutes = require("./routes/authRoutes");
 
 // Configure dotenv to look for the .env file in the current directory
 dotenv.config({ path: path.join(__dirname, '.env') });
@@ -15,6 +16,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use("/api/auth", authRoutes);
 
 // Test Route
 app.get("/", (req, res) => {
