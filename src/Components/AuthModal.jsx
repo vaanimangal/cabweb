@@ -7,6 +7,8 @@ import {
   signInWithPhoneNumber,
 } from "firebase/auth";
 
+import { registerUser, loginUser } from "../api/authApi";
+
 function AuthModal({ type, onClose, onSuccess }) {
   // ... rest of your code stays exactly the same
   // function AuthModal({ type, onClose, onSuccess }) { 
@@ -77,25 +79,49 @@ const appVerifier = window.recaptchaVerifier;
   }
 
   try {
-    if (!confirmationResult) {
-      alert("OTP session expired. Please resend OTP.");
-      return;
-    }
-
-    // REAL OTP verification
-    await confirmationResult.confirm(otp);
-
-    alert(`${type} successful`);
-
-    if (onSuccess) {
-      onSuccess(isRegister ? name : null);
-    }
-
-    onClose();
-  } catch (error) {
-    console.error(error);
-    alert("Invalid OTP. Please try again.");
+  if (!confirmationResult) {
+    alert("OTP session expired. Please resend OTP.");
+    return;
   }
+
+  // Verify OTP with Firebase
+  await confirmationResult.confirm(otp);
+
+  let response;
+
+  if (isRegister) {
+    response = await registerUser({
+      name,
+      phone: mobile,
+    });
+  } else {
+    response = await loginUser({
+      phone: mobile,
+    });
+  }
+
+  alert(response.data.message);
+
+  if (onSuccess) {
+    onSuccess(response.data.user);
+  }
+  
+  localStorage.setItem(
+  "user",
+  JSON.stringify(response.data.user)
+);
+
+  onClose();
+
+} catch (error) {
+  console.error(error);
+
+  if (error.response) {
+    alert(error.response.data.message);
+  } else {
+    alert("Something went wrong.");
+  }
+}
 };
 
   return (

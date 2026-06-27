@@ -3,7 +3,7 @@ import { useState } from "react";
 import AuthModal from "./AuthModal";
 
 // 👈 FIX: Add props destructuring { isLoggedIn, setIsLoggedIn } inside the parentheses
-function Navbar({ isLoggedIn, setIsLoggedIn }) { 
+function Navbar({ user, setUser }) {
   const [authType, setAuthType] = useState(null); 
   // null | "login" | "register"
 
@@ -16,24 +16,38 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
         </div>
 
         <div>
-          {/* Optional: You can now use isLoggedIn to hide these when logged in */}
-          {!isLoggedIn ? (
-            <>
-              <button onClick={() => setAuthType("login")}>Login</button>
-              <button onClick={() => setAuthType("register")}>Register</button>
-            </>
-          ) : (
-            <button onClick={() => setIsLoggedIn(false)}>Logout</button>
-          )}
+          {!user ? (
+  <>
+    <button onClick={() => setAuthType("login")}>Login</button>
+    <button onClick={() => setAuthType("register")}>Register</button>
+  </>
+) : (
+  <div className="user-section">
+    <span className="welcome-text">
+      Hi, {user.name}
+    </span>
+
+    <button
+      onClick={() => {
+        localStorage.removeItem("user");
+        setUser(null);
+      }}
+    >
+      Logout
+    </button>
+  </div>
+)}
         </div>
       </nav>
 
       {authType && (
-        <AuthModal 
-          type={authType} 
-          onClose={() => setAuthType(null)} 
-          onSuccess={() => setIsLoggedIn(true)} // 👈 This will work perfectly now!
-        />
+        <AuthModal
+  type={authType}
+  onClose={() => setAuthType(null)}
+  onSuccess={(loggedInUser) => {
+    setUser(loggedInUser);
+  }}
+/>
       )}
     </>
   );

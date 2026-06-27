@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // 👈 Import Router utilities
 import Navbar from "./Components/Navbar";
 import Hero from "./Components/Hero";
@@ -8,7 +8,15 @@ import DriverLoading from "./Components/DriverLoading"; // 👈 Import your new 
 
 function App() {
   // 1. Track if the user is authenticated (set to false by default)
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+
+useEffect(() => {
+  const savedUser = localStorage.getItem("user");
+
+  if (savedUser) {
+    setUser(JSON.parse(savedUser));
+  }
+}, []);
   const [tripData, setTripData] = useState({
     pickup: "",
     destination: "",
@@ -19,7 +27,7 @@ function App() {
   return (
     <Router>
       {/* 👈 Added login props to Navbar so it can update its login/logout buttons */}
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Navbar user={user} setUser={setUser} />
       
       <Routes>
         {/* 1. Main Home Layout containing your entire booking flow */}
@@ -30,7 +38,7 @@ function App() {
               <Hero />
               <BookingForm trip={tripData} setTrip={setTripData} />
               {/* 👈 Added login props here to link it with the compulsory check on button click */}
-              <DestinationCards isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+              <DestinationCards isLoggedIn={!!user} />
             </>
           } 
         />
