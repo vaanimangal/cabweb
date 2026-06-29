@@ -6,6 +6,7 @@ import AuthModal from "./AuthModal";
 function Navbar({ user, setUser }) {
   const [authType, setAuthType] = useState(null); 
   // null | "login" | "register"
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <>
@@ -23,19 +24,43 @@ function Navbar({ user, setUser }) {
   </>
 ) : (
   <div className="user-section">
-    <span className="welcome-text">
-      Hi, {user.name}
-    </span>
 
-    <button
-      onClick={() => {
-        localStorage.removeItem("user");
-        setUser(null);
-      }}
-    >
-      Logout
-    </button>
-  </div>
+  <button
+    className="profile-btn"
+    onClick={() => setShowMenu(!showMenu)}
+  >
+    👤 {user.name} ▼
+  </button>
+
+  {showMenu && (
+    <div className="profile-dropdown">
+
+      <button
+        onClick={() => {
+          setShowMenu(false);
+          window.location.href = "/profile";
+        }}
+      >
+        👤My Profile
+      </button>
+
+      <button>
+        🚕My Bookings
+      </button>
+
+      <button
+        onClick={() => {
+          localStorage.removeItem("user");
+          setUser(null);
+        }}
+      >
+        Logout
+      </button>
+
+    </div>
+  )}
+
+</div>
 )}
         </div>
       </nav>

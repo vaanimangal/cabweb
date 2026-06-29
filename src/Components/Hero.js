@@ -1,8 +1,7 @@
-import { useState } from "react";
+
 import "../styles/Hero.css";
 
-function Hero() {
-  const [tripType, setTripType] = useState("oneway");
+function Hero({ trip, setTrip }) {
 
   return (
     <section className="hero">
@@ -20,22 +19,32 @@ function Hero() {
           <div className="trip-type">
             <button
               className={
-                tripType === "oneway"
+                trip.tripType === "oneway"
                   ? "trip-btn active"
                   : "trip-btn"
               }
-              onClick={() => setTripType("oneway")}
+              onClick={() =>
+  setTrip({
+    ...trip,
+    tripType: "oneway",
+  })
+}
             >
               One Way
             </button>
 
             <button
               className={
-                tripType === "roundtrip"
+                trip.tripType === "roundtrip"
                   ? "trip-btn active"
                   : "trip-btn"
               }
-              onClick={() => setTripType("roundtrip")}
+              onClick={() =>
+  setTrip({
+    ...trip,
+    tripType: "roundtrip",
+  })
+}
             >
               Round Trip
             </button>

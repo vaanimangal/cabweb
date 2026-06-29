@@ -2,46 +2,75 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaCar, FaGasPump } from "react-icons/fa";
 import { MdLanguage, MdAccessible } from "react-icons/md";
-import AuthModal from "./AuthModal"; // 👈 Your existing modal is safely imported here
+import AuthModal from "./AuthModal";
+import axios from "axios";
 
 import "../styles/DestinationCards.css";
 
-function DestinationCards({ isLoggedIn, setIsLoggedIn }) { // 👈 Accepts props from App.js
+function DestinationCards({
+  trip,
+  setTrip,
+  isLoggedIn,
+  user,
+}) {
   const navigate = useNavigate();
-  
-  const [language, setLanguage] = useState("");
-  const [special, setSpecial] = useState("");
-  const [fuel, setFuel] = useState("");
-  const [selectedVehicle, setSelectedVehicle] = useState("");
-  
-  // 👈 New internal state to toggle the modal if they aren't logged in
-  const [showAuthModal, setShowAuthModal] = useState(false);
-  
-  const isFormValid = Boolean(selectedVehicle) && Boolean(fuel);
 
-  // 👈 Extracted the navigation logic so it can be reused safely
-  const handleNavigation = () => {
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
+  const isFormValid = Boolean(trip.vehicle) && Boolean(trip.fuel);
+
+  const handleNavigation = async () => {
+  try {
+    const response = await axios.post(
+      "http://localhost:5000/api/bookings",
+      {
+        userId: user._id,
+
+        tripType: trip.tripType,
+
+        pickup: trip.pickup,
+        destination: trip.destination,
+
+        startDateTime: trip.startDateTime,
+        endDateTime: trip.endDateTime,
+
+        vehicle: trip.vehicle,
+        fuel: trip.fuel,
+        language: trip.language,
+        special: trip.special,
+      }
+    );
+
     navigate("/find-driver", {
       state: {
-        vehicle: selectedVehicle,
-        fuel: fuel,
-        language: language,
-        special: special
-      }
+        ...trip,
+        bookingId: response.data.booking._id,
+      },
     });
-  };
+
+  } catch (err) {
+    console.error(err);
+    alert("Booking failed.");
+  }
+};
 
   return (
     <div className="filter-container">
       <h2>Choose Your Ride</h2>
 
       <div className="filters">
+
         {/* Language */}
         <div className="filter-box">
           <MdLanguage className="filter-icon" />
           <select
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
+            value={trip.language}
+            onChange={(e) =>
+              setTrip({
+                ...trip,
+                language: e.target.value,
+              })
+            }
           >
             <option value="">Language</option>
             <option value="English">English</option>
@@ -54,11 +83,18 @@ function DestinationCards({ isLoggedIn, setIsLoggedIn }) { // 👈 Accepts props
         <div className="filter-box">
           <MdAccessible className="filter-icon" />
           <select
-            value={special}
-            onChange={(e) => setSpecial(e.target.value)}
+            value={trip.special}
+            onChange={(e) =>
+              setTrip({
+                ...trip,
+                special: e.target.value,
+              })
+            }
           >
             <option value="">Special</option>
-            <option value="Pet Friendly">Pet Friendly</option>
+            <option value="Pet Friendly">
+              Pet Friendly
+            </option>
             <option value="Wheelchair Friendly">
               Wheelchair Friendly
             </option>
@@ -69,8 +105,13 @@ function DestinationCards({ isLoggedIn, setIsLoggedIn }) { // 👈 Accepts props
         <div className="filter-box">
           <FaGasPump className="filter-icon" />
           <select
-            value={fuel}
-            onChange={(e) => setFuel(e.target.value)}
+            value={trip.fuel}
+            onChange={(e) =>
+              setTrip({
+                ...trip,
+                fuel: e.target.value,
+              })
+            }
           >
             <option value="">Fuel</option>
             <option value="Petrol">Petrol</option>
@@ -79,12 +120,21 @@ function DestinationCards({ isLoggedIn, setIsLoggedIn }) { // 👈 Accepts props
             <option value="Electric">Electric</option>
           </select>
         </div>
+
       </div>
 
       <div className="vehicle-grid">
+
         <div
-          className={`vehicle-card ${selectedVehicle === "Sedan" ? "selected" : ""}`}
-          onClick={() => setSelectedVehicle("Sedan")}
+          className={`vehicle-card ${
+            trip.vehicle === "Sedan" ? "selected" : ""
+          }`}
+          onClick={() =>
+            setTrip({
+              ...trip,
+              vehicle: "Sedan",
+            })
+          }
         >
           <FaCar className="vehicle-icon" />
           <h3>Sedan</h3>
@@ -92,8 +142,15 @@ function DestinationCards({ isLoggedIn, setIsLoggedIn }) { // 👈 Accepts props
         </div>
 
         <div
-          className={`vehicle-card ${selectedVehicle === "SUV" ? "selected" : ""}`}
-          onClick={() => setSelectedVehicle("SUV")}
+          className={`vehicle-card ${
+            trip.vehicle === "SUV" ? "selected" : ""
+          }`}
+          onClick={() =>
+            setTrip({
+              ...trip,
+              vehicle: "SUV",
+            })
+          }
         >
           <FaCar className="vehicle-icon" />
           <h3>SUV</h3>
@@ -101,8 +158,15 @@ function DestinationCards({ isLoggedIn, setIsLoggedIn }) { // 👈 Accepts props
         </div>
 
         <div
-          className={`vehicle-card ${selectedVehicle === "Innova" ? "selected" : ""}`}
-          onClick={() => setSelectedVehicle("Innova")}
+          className={`vehicle-card ${
+            trip.vehicle === "Innova" ? "selected" : ""
+          }`}
+          onClick={() =>
+            setTrip({
+              ...trip,
+              vehicle: "Innova",
+            })
+          }
         >
           <FaCar className="vehicle-icon" />
           <h3>Innova</h3>
@@ -110,13 +174,21 @@ function DestinationCards({ isLoggedIn, setIsLoggedIn }) { // 👈 Accepts props
         </div>
 
         <div
-          className={`vehicle-card ${selectedVehicle === "Hatchback" ? "selected" : ""}`}
-          onClick={() => setSelectedVehicle("Hatchback")}
+          className={`vehicle-card ${
+            trip.vehicle === "Hatchback" ? "selected" : ""
+          }`}
+          onClick={() =>
+            setTrip({
+              ...trip,
+              vehicle: "Hatchback",
+            })
+          }
         >
           <FaCar className="vehicle-icon" />
           <h3>Hatchback</h3>
           <p>4 Seats</p>
         </div>
+
       </div>
 
       {!isFormValid && (
@@ -130,7 +202,7 @@ function DestinationCards({ isLoggedIn, setIsLoggedIn }) { // 👈 Accepts props
         disabled={!isFormValid}
         onClick={() => {
           if (!isFormValid) return;
-          
+
           if (!isLoggedIn) {
             setShowAuthModal(true);
           } else {
@@ -141,14 +213,12 @@ function DestinationCards({ isLoggedIn, setIsLoggedIn }) { // 👈 Accepts props
         Find Drivers
       </button>
 
-      {/* 👈 Now it behaves EXACTLY like your navbar pop up setup */}
       {showAuthModal && (
-        <AuthModal 
+        <AuthModal
           type="login"
-          onClose={() => setShowAuthModal(false)} // If they click ✕, it just closes safely!
+          onClose={() => setShowAuthModal(false)}
           onSuccess={() => {
-            setIsLoggedIn(true); // Only runs when OTP is verified successfully!
-            handleNavigation();  // Pushes them straight to the driver page
+            handleNavigation();
           }}
         />
       )}

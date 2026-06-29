@@ -5,6 +5,7 @@ import Hero from "./Components/Hero";
 import BookingForm from "./Components/BookingForm";
 import DestinationCards from "./Components/DestinationCards";
 import DriverLoading from "./Components/DriverLoading"; // 👈 Import your new page component
+import UserProfile from "./Pages/UserProfile";
 
 function App() {
   // 1. Track if the user is authenticated (set to false by default)
@@ -18,12 +19,19 @@ useEffect(() => {
   }
 }, []);
   const [tripData, setTripData] = useState({
-    pickup: "",
-    destination: "",
-    startDateTime: "",
-    endDateTime: "",
-  });
+  tripType: "oneway",
 
+  pickup: "",
+  destination: "",
+
+  startDateTime: "",
+  endDateTime: "",
+
+  vehicle: "",
+  fuel: "",
+  language: "",
+  special: "",
+});
   return (
     <Router>
       {/* 👈 Added login props to Navbar so it can update its login/logout buttons */}
@@ -35,16 +43,30 @@ useEffect(() => {
           path="/" 
           element={
             <>
-              <Hero />
+              <Hero trip={tripData} setTrip={setTripData} />
               <BookingForm trip={tripData} setTrip={setTripData} />
               {/* 👈 Added login props here to link it with the compulsory check on button click */}
-              <DestinationCards isLoggedIn={!!user} />
+              <DestinationCards
+                  trip={tripData}
+                  setTrip={setTripData}
+                  isLoggedIn={!!user}
+                  user={user}
+              />
             </>
           } 
         />
 
         {/* 2. Isolated Search/Driver view */}
         <Route path="/find-driver" element={<DriverLoading />} />
+        <Route
+  path="/profile"
+  element={
+    <UserProfile
+      user={user}
+      setUser={setUser}
+    />
+  }
+/>
       </Routes>
     </Router>
   );

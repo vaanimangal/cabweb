@@ -92,3 +92,83 @@ nav button:hover {
   font-weight: 600;
   color: #333;
 }
+/* USER SECTION */
+
+.user-section {
+  position: relative;
+  display: inline-block;
+}
+
+/* PROFILE BUTTON */
+
+.profile-btn {
+  background: #c1121f;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.profile-btn:hover {
+  background: #9b0d17;
+}
+
+/* DROPDOWN */
+
+.profile-dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+
+  width: 220px;
+
+  background: #fff;
+  border-radius: 12px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  z-index: 999;
+}
+
+/* DROPDOWN BUTTONS */
+
+.profile-dropdown button {
+  width: 100%;
+
+  background: white;
+  border: none;
+
+  text-align: left;
+
+  padding: 14px 18px;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+/* Hover */
+
+.profile-dropdown button:hover {
+  background: #fff3f3;
+  color: #c1121f;
+}
+
+/* Logout */
+
+.profile-dropdown button:last-child {
+  border-top: 1px solid #ececec;
+  color: #c1121f;
+  font-weight: 600;
+}
