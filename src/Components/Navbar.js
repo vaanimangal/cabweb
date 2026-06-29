@@ -1,12 +1,30 @@
 import "../styles/Navbar.css";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import AuthModal from "./AuthModal";
 
-// 👈 FIX: Add props destructuring { isLoggedIn, setIsLoggedIn } inside the parentheses
 function Navbar({ user, setUser }) {
-  const [authType, setAuthType] = useState(null); 
-  // null | "login" | "register"
+  const [authType, setAuthType] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
+  
+  // 1. Create a ref to target the user-section container
+  const menuRef = useRef(null);
+
+  // 2. Add the effect to listen for clicks outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    }
+
+    if (showMenu) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showMenu]);
 
   return (
     <>
@@ -18,61 +36,59 @@ function Navbar({ user, setUser }) {
 
         <div>
           {!user ? (
-  <>
-    <button onClick={() => setAuthType("login")}>Login</button>
-    <button onClick={() => setAuthType("register")}>Register</button>
-  </>
-) : (
-  <div className="user-section">
+            <>
+              <button onClick={() => setAuthType("login")}>Login</button>
+              <button onClick={() => setAuthType("register")}>Register</button>
+            </>
+          ) : (
+            // 3. Attach the ref to this container
+            <div className="user-section" ref={menuRef}>
+              <button
+                className="profile-btn"
+                onClick={() => setShowMenu(!showMenu)}
+              >
+                👤 {user.name} ▼
+              </button>
 
-  <button
-    className="profile-btn"
-    onClick={() => setShowMenu(!showMenu)}
-  >
-    👤 {user.name} ▼
-  </button>
+              {showMenu && (
+                <div className="profile-dropdown">
+                  <button
+                    onClick={() => {
+                      setShowMenu(false);
+                      window.location.href = "/profile";
+                    }}
+                  >
+                    👤My Profile
+                  </button>
 
-  {showMenu && (
-    <div className="profile-dropdown">
+                  <button>
+                    🚕My Bookings
+                  </button>
 
-      <button
-        onClick={() => {
-          setShowMenu(false);
-          window.location.href = "/profile";
-        }}
-      >
-        👤My Profile
-      </button>
-
-      <button>
-        🚕My Bookings
-      </button>
-
-      <button
-        onClick={() => {
-          localStorage.removeItem("user");
-          setUser(null);
-        }}
-      >
-        Logout
-      </button>
-
-    </div>
-  )}
-
-</div>
-)}
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem("user");
+                      setUser(null);
+                      setShowMenu(false); // Close menu on logout
+                    }}
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </nav>
 
       {authType && (
         <AuthModal
-  type={authType}
-  onClose={() => setAuthType(null)}
-  onSuccess={(loggedInUser) => {
-    setUser(loggedInUser);
-  }}
-/>
+          type={authType}
+          onClose={() => setAuthType(null)}
+          onSuccess={(loggedInUser) => {
+            setUser(loggedInUser);
+          }}
+        />
       )}
     </>
   );
