@@ -1,70 +1,394 @@
-# Getting Started with Create React App
+# 🚖 GEO RIDES
+
+> **Go Places, Go GEO**
+
+A modern full-stack cab booking web application built using the MERN Stack with Firebase Authentication. Geo Rides provides a clean, responsive, and intuitive cab booking experience where users can securely register using OTP, customize rides, manage profiles, and book trips.
+
+---
+
+# 📌 Project Overview
+
+Geo Rides is designed to simplify cab booking while delivering a professional user experience.
+
+The application allows users to:
+
+- Register/Login using Mobile OTP
+- Book One-way or Round Trips
+- Choose Vehicle Type
+- Select Fuel Preference
+- Select Preferred Driver Language
+- Select Accessibility Preferences (Pet-Friendly or Wheelchair-Friendly)
+- View Driver Searching Interface
+- Manage Personal Profile
+- View Booking History
+- Securely store user data in MongoDB
+
+---
+
+# ✨ Features
+
+## 🔐 Authentication
+
+- Firebase Phone OTP Authentication
+- Secure Login & Registration
+- Persistent Login using Local Storage
+- Automatic Session Handling
+
+---
+
+## 🚖 Cab Booking
+
+Users can:
+
+- Choose Trip Type
+  - One Way
+  - Round Trip
+
+- Pickup Location
+
+- Destination
+
+- Trip Start Date & Time
+
+- Trip End Date & Time
+
+- Vehicle Selection
+
+  - Sedan
+  - SUV
+  - Innova
+  - Hatchback
+
+- Fuel Preference
+
+  - Petrol
+  - Diesel
+  - CNG
+  - Electric
+
+- Driver Language
+
+  - English
+  - Hindi
+  - Both English and Hindi
+
+- Accessibility
+
+  - Pet Friendly
+  - Wheelchair Friendly
+
+---
+
+## 👤 User Dashboard
+
+- Professional User Profile
+- Edit Name
+- Member Since Information
+- Logout
+- Profile Avatar
+
+---
+
+## 📖 My Bookings
+
+Users can
+
+- View all bookings
+- Booking Status
+- Pickup & Destination
+- Vehicle Details
+- Fuel Type
+- Booking Date
+- Fare (Future Integration)
+
+---
+
+## 🚗 Driver Searching Screen
+
+Interactive driver search interface featuring
+
+- Animated driver search experience
+- Estimated waiting time
+- Smooth ride confirmation flow
+
+---
+
+## 💾 Database
+
+MongoDB stores
+
+### Users
+
+- Name
+- Mobile Number
+- Firebase UID
+- Created Date
+
+### Bookings
+
+- Pickup
+- Destination
+- Trip Type
+- Vehicle
+- Fuel
+- Language
+- Accessibility
+- Start Time
+- End Time
+- Booking Status
+- Fare
+- User Reference
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- React.js
+- React Router DOM
+- CSS3
+- React Icons
+
+---
+
+## Backend
+
+- Node.js
+- Express.js
+
+---
+
+## Database
+
+- MongoDB Atlas
+- Mongoose
+
+---
+
+## Authentication
+
+- Firebase Authentication
+- Phone OTP Verification
+- Invisible reCAPTCHA
+
+---
+
+# 📂 Project Structure
+
+```
+cabweb
+│
+├── backend
+│   ├── config
+│   ├── controllers
+│   ├── models
+│   ├── routes
+│   ├── server.js
+│   └── .env
+│
+├── src
+│   ├── Components
+│   ├── Pages
+│   ├── firebase
+│   ├── styles
+│   ├── App.js
+│   └── index.js
+│
+├── public
+│
+├── package.json
+└── README.md
+```
+
+---
+
+# ⚙ Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/vaanimangal/cabweb.git
+```
+
+Move inside project
+
+```bash
+cd cabweb
+```
+
+---
+
+# 📦 Install Frontend Dependencies
+
+```bash
+npm install
+```
+
+---
+
+# 📦 Install Backend Dependencies
+
+```bash
+cd backend
+
+npm install
+```
+
+---
+
+# 🔑 Environment Variables
+
+Create a `.env` file inside the **backend** folder.
+
+Example:
+
+```env
+PORT=5000
+
+MONGO_URI=your_mongodb_connection_string
+
+JWT_SECRET=your_secret_key
+```
+
+Firebase configuration should be added inside
+
+```
+src/firebase/firebase.js
+```
+
+---
+
+# ▶ Running the Frontend
+
+From project root
+
+```bash
+npm start
+```
+
+Runs on
+
+```
+http://localhost:3000
+http://192.168.1.8:3000
+```
+
+---
+
+# ▶ Running the Backend
+
+Open another terminal
+
+```bash
+cd backend
+
+npm start
+```
+
+Runs on
+
+```
+http://localhost:5000
+```
+
+---
+
+# 🚀 Current Workflow
+
+```
+Register/Login
+        │
+        ▼
+Firebase OTP Authentication
+        │
+        ▼
+User Stored in MongoDB
+        │
+        ▼
+Fill Trip Details
+        │
+        ▼
+Select Vehicle
+        │
+        ▼
+Driver Searching Screen
+        │
+        ▼
+Booking (MongoDB Integration)
+        │
+        ▼
+My Bookings
+        │
+        ▼
+View Booking History
+```
+
+---
+
+# 📱 Screens Included
+
+- Landing / home Page
+- Login
+- Register
+- OTP Verification
+- Booking Form section under home page
+- Vehicle Selection under home page
+- Driver Loading page
+- User Profile dropdown
+- User Profile Page
+- My Bookings Page
+
+---
+
+# 🔒 Security
+
+- Firebase OTP Authentication
+- MongoDB Data Storage
+- Express API
+- Environment Variables
+- Input Validation
+
+---
+
+# 🌟 Future Enhancements
+
+- Google Maps Integration
+- Live Driver Tracking
+- Driver Dashboard
+- Ride Cancellation
+- Driver Ratings
+- Ride History Analytics
+- Push Notifications
+- Wallet System
+- Coupon Codes
+- Admin Dashboard
+- Real-time Driver Matching using Socket.io
+
+---
+
+#  Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# 📷 Project Preview
 
-In the project directory, you can run:
+> A modern, responsive cab booking platform built using the MERN Stack with Firebase Authentication, offering a seamless ride-booking experience through an intuitive user interface.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# 📄 License
 
-### `npm test`
+This project is intended for educational and portfolio purposes.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 👩‍💻 Developed By
 
-### `npm run build`
+**Vaani Mangal**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+A Full Stack Web Development project demonstrating modern MERN development practices, Firebase Authentication, REST APIs, responsive UI design, and MongoDB integration.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## ⭐ If you like this project, don't forget to star the repository.
