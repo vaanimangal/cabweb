@@ -6,6 +6,7 @@ import BookingForm from "./Components/BookingForm";
 import DestinationCards from "./Components/DestinationCards";
 import DriverLoading from "./Components/DriverLoading"; // 👈 Import your new page component
 import UserProfile from "./Pages/UserProfile";
+import SeeMyBooking from "./Pages/SeeMyBooking";
 
 function App() {
   // 1. Track if the user is authenticated (set to false by default)
@@ -58,12 +59,21 @@ useEffect(() => {
 
         {/* 2. Isolated Search/Driver view */}
         <Route path="/find-driver" element={<DriverLoading />} />
+        
         <Route
   path="/profile"
   element={
     <UserProfile
       user={user}
       setUser={setUser}
+    />
+  }
+/>
+      <Route
+  path="/my-bookings"
+  element={
+    <SeeMyBooking
+      user={user}
     />
   }
 />

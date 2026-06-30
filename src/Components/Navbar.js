@@ -1,10 +1,12 @@
 import "../styles/Navbar.css";
 import { useState, useRef, useEffect } from "react";
 import AuthModal from "./AuthModal";
+import { useNavigate } from "react-router-dom";
 
 function Navbar({ user, setUser }) {
   const [authType, setAuthType] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
   
   // 1. Create a ref to target the user-section container
   const menuRef = useRef(null);
@@ -60,11 +62,15 @@ function Navbar({ user, setUser }) {
                   >
                     👤My Profile
                   </button>
-
-                  <button>
-                    🚕My Bookings
+                  <button
+                   onClick={() => {
+                   setShowMenu(false);
+                   window.location.href = "/my-bookings";
+                   }}
+                   >
+                    🚕 My Bookings
                   </button>
-
+                
                   <button
                     onClick={() => {
                       localStorage.removeItem("user");
