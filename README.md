@@ -1,14 +1,12 @@
-# 🚖 GEO RIDES
+# 🚖 CabWeb
 
-> **Go Places, Go GEO**
-
-A modern full-stack cab booking web application built using the MERN Stack with Firebase Authentication. Geo Rides provides a clean, responsive, and intuitive cab booking experience where users can securely register using OTP, customize rides, manage profiles, and book trips.
+A modern full-stack cab booking web application built using the MERN Stack with Firebase Authentication. This platform provides a clean, responsive, and intuitive cab booking experience where users can securely register using OTP, customize rides, manage profiles, and book trips.
 
 ---
 
 # 📌 Project Overview
 
-Geo Rides is designed to simplify cab booking while delivering a professional user experience.
+CabWeb is designed to simplify cab booking while delivering a professional user experience.
 
 The application allows users to:
 
