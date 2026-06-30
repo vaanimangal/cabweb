@@ -39,7 +39,7 @@ function DriverLoading() {
               <p><strong>Languages:</strong> {language || "English, Hindi"}</p>
             </div>
           </div>
-          <button className="back-btn" onClick={() => navigate("/")}>
+          <button className="back-btn" onClick={() => navigate("/payment")}>
             Confirm
           </button>
         </div>

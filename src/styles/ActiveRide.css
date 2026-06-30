@@ -1,0 +1,36 @@
+.active-ride-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-placeholder {
+  flex-grow: 1;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.ride-footer {
+  padding: 20px;
+  background: white;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+}
+
+.driver-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-contact { flex: 1; padding: 12px; background: #28a745; color: white; border: none; border-radius: 8px; }
+.btn-cancel { flex: 1; padding: 12px; background: #dc3545; color: white; border: none; border-radius: 8px; }

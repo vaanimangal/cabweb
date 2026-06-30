@@ -7,6 +7,8 @@ import DestinationCards from "./Components/DestinationCards";
 import DriverLoading from "./Components/DriverLoading"; // 👈 Import your new page component
 import UserProfile from "./Pages/UserProfile";
 import SeeMyBooking from "./Pages/SeeMyBooking";
+import PaymentPage from "./Components/PaymentPage";
+import ActiveRide from "./Components/ActiveRide";
 
 function App() {
   // 1. Track if the user is authenticated (set to false by default)
@@ -59,7 +61,8 @@ useEffect(() => {
 
         {/* 2. Isolated Search/Driver view */}
         <Route path="/find-driver" element={<DriverLoading />} />
-        
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/ActiveRide" element={<ActiveRide />} />
         <Route
   path="/profile"
   element={
