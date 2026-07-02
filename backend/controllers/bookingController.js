@@ -29,7 +29,7 @@ const createBooking = async (req, res) => {
      fuel,
      language,
      special,
-    });
+     });
 
     res.status(201).json({
       message: "Booking created successfully",
