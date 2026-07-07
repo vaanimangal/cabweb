@@ -7,11 +7,9 @@ function Navbar({ user, setUser }) {
   const [authType, setAuthType] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
-  
-  // 1. Create a ref to target the user-section container
+
   const menuRef = useRef(null);
 
-  // 2. Add the effect to listen for clicks outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -22,7 +20,7 @@ function Navbar({ user, setUser }) {
     if (showMenu) {
       document.addEventListener("mousedown", handleClickOutside);
     }
-    
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -41,9 +39,14 @@ function Navbar({ user, setUser }) {
             <>
               <button onClick={() => setAuthType("login")}>Login</button>
               <button onClick={() => setAuthType("register")}>Register</button>
+              <button
+                className="driver-link-btn"
+                onClick={() => setAuthType("register-driver")}
+              >
+                Become a Driver
+              </button>
             </>
           ) : (
-            // 3. Attach the ref to this container
             <div className="user-section" ref={menuRef}>
               <button
                 className="profile-btn"
@@ -60,22 +63,29 @@ function Navbar({ user, setUser }) {
                       window.location.href = "/profile";
                     }}
                   >
-                    👤My Profile
+                    👤 My Profile
                   </button>
                   <button
-                   onClick={() => {
-                   setShowMenu(false);
-                   window.location.href = "/my-bookings";
-                   }}
-                   >
+                    onClick={() => {
+                      setShowMenu(false);
+                      window.location.href = "/my-bookings";
+                    }}
+                  >
                     🚕 My Bookings
                   </button>
-                
+                  <button
+                    onClick={() => {
+                      setShowMenu(false);
+                      navigate("/driver-dashboard");
+                    }}
+                  >
+                    🚗 Driver Dashboard
+                  </button>
                   <button
                     onClick={() => {
                       localStorage.removeItem("user");
                       setUser(null);
-                      setShowMenu(false); // Close menu on logout
+                      setShowMenu(false);
                     }}
                   >
                     Logout
