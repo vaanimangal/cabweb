@@ -1,0 +1,28 @@
+.driver-dashboard-page{
+  width:100%;
+}
+
+.driver-dashboard-shell{
+  background:#0b0b0f;
+  color:#fff;
+}
+
+.driver-dashboard-main{
+  padding:24px;
+}
+
+/* slide-down on enter */
+.driver-dashboard-shell{
+  overflow:hidden;
+  max-height:0;
+  opacity:0;
+  transform:translateY(-10px);
+  transition:max-height 420ms ease-out, opacity 260ms ease-out, transform 420ms ease-out;
+}
+
+.driver-dashboard-shell.is-open{
+  max-height:2000px;
+  opacity:1;
+  transform:translateY(0);
+}
+

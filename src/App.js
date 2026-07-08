@@ -9,18 +9,20 @@ import UserProfile from "./Pages/UserProfile";
 import SeeMyBooking from "./Pages/SeeMyBooking";
 import PaymentPage from "./Components/PaymentPage";
 import ActiveRide from "./Components/ActiveRide";
+import DriverDashboard from "./driver/DriverDashboard";
+
 
 function App() {
   // 1. Track if the user is authenticated (set to false by default)
   const [user, setUser] = useState(null);
 
-useEffect(() => {
-  const savedUser = localStorage.getItem("user");
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
 
-  if (savedUser) {
-    setUser(JSON.parse(savedUser));
-  }
-}, []);
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
   const [tripData, setTripData] = useState({
   tripType: "oneway",
 
@@ -63,23 +65,32 @@ useEffect(() => {
         <Route path="/find-driver" element={<DriverLoading />} />
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/ActiveRide" element={<ActiveRide />} />
+
+        {/* Driver dashboard (driver folder UI) */}
         <Route
-  path="/profile"
-  element={
-    <UserProfile
-      user={user}
-      setUser={setUser}
-    />
-  }
+    path="/driver-dashboard"
+    element={<DriverDashboard />}
 />
-      <Route
-  path="/my-bookings"
-  element={
-    <SeeMyBooking
-      user={user}
-    />
-  }
-/>
+
+
+
+        <Route
+          path="/profile"
+          element={
+            <UserProfile
+              user={user}
+              setUser={setUser}
+            />
+          }
+        />
+        <Route
+          path="/my-bookings"
+          element={
+            <SeeMyBooking
+              user={user}
+            />
+          }
+        />
       </Routes>
     </Router>
   );

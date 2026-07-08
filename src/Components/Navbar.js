@@ -77,6 +77,7 @@ function Navbar({ user, setUser }) {
                     onClick={() => {
                       setShowMenu(false);
                       navigate("/driver-dashboard");
+
                     }}
                   >
                     🚗 Driver Dashboard

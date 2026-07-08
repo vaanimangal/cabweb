@@ -172,3 +172,18 @@ nav button:hover {
   color: #c1121f;
   font-weight: 600;
 }
+.driver-link-btn {
+  background: transparent;
+  border: 1px solid #ff6b00;
+  color: #ff6b00;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.driver-link-btn:hover {
+  background: #ff6b00;
+  color: white;
+}

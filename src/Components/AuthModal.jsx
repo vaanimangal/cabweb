@@ -162,6 +162,7 @@ function AuthModal({ type, onClose, onSuccess }) {
                   <option value="sedan">Sedan</option>
                   <option value="suv">SUV</option>
                   <option value="hatchback">Hatchback</option>
+                  <option value="Innova">Innova</option>
                 </select>
                 <input
                   placeholder="Driving License Number"
