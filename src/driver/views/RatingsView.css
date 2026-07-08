@@ -1,0 +1,44 @@
+/* RatingsView.css */
+.rv-container { display: flex; flex-direction: column; gap: 20px; }
+.rv-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; }
+
+.rv-summary-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 1024px) { .rv-summary-grid { grid-template-columns: 1fr 2fr; } }
+
+.rv-hero-card { padding: 24px; text-align: center; background: linear-gradient(135deg, #0f172a, #1e293b); color: white; }
+.rv-label { font-size: 12px; font-weight: 600; text-transform: uppercase; opacity: 0.7; }
+.rv-rating-val { font-size: 60px; font-weight: 800; margin: 8px 0; }
+.rv-star-wrapper { display: flex; justify-content: center; }
+.rv-footer { font-size: 14px; font-weight: 600; opacity: 0.8; margin-top: 12px; }
+
+.rv-breakdown-card { padding: 20px; }
+.rv-section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.rv-section-header h2 { font-size: 16px; font-weight: 800; }
+.rv-chip { display: flex; align-items: center; gap: 4px; background: #fef2f2; color: #b91c1c; padding: 4px 10px; border-radius: 99px; font-size: 12px; font-weight: 600; }
+
+.rv-bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.rv-bar-label { display: flex; align-items: center; gap: 4px; width: 40px; font-weight: 700; color: #334155; }
+.rv-bar-label .star { color: #fbbf24; }
+.rv-progress-bg { flex: 1; height: 10px; background: #f1f5f9; border-radius: 99px; }
+.rv-progress-fill { height: 100%; background: linear-gradient(90deg, #fbbf24, #f59e0b); border-radius: 99px; }
+.rv-bar-count { width: 60px; text-align: right; font-size: 12px; font-weight: 600; color: #64748b; }
+
+.rv-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.rv-stat-card { padding: 16px; text-align: center; }
+.rv-stat-icon { display: grid; place-items: center; width: 40px; height: 40px; margin: 0 auto; border-radius: 12px; }
+.rv-stat-icon.red { background: #fef2f2; color: #b91c1c; }
+.rv-stat-icon.ink { background: #f1f5f9; color: #475569; }
+.rv-stat-icon.gold { background: #fffbeb; color: #b45309; }
+.rv-stat-val { font-size: 20px; font-weight: 800; margin-top: 8px; }
+.rv-stat-label { font-size: 11px; font-weight: 600; color: #64748b; }
+
+.rv-reviews-header { padding: 20px; border-bottom: 1px solid #f1f5f9; }
+.rv-reviews-header h2 { font-size: 16px; font-weight: 800; }
+.rv-reviews-header p { font-size: 14px; color: #64748b; margin-top: 4px; }
+.rv-review-item { display: flex; gap: 12px; padding: 20px; border-bottom: 1px solid #f1f5f9; }
+.rv-review-avatar { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: #f1f5f9; color: #475569; font-weight: 700; }
+.rv-review-meta { display: flex; justify-content: space-between; align-items: center; }
+.rv-p-name { font-weight: 700; color: #0f172a; }
+.rv-p-date { font-size: 12px; color: #94a3b8; }
+.rv-comment { font-size: 14px; color: #334155; margin: 8px 0; line-height: 1.5; }
+.rv-route { font-size: 12px; color: #94a3b8; }

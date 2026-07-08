@@ -1,0 +1,27 @@
+/* Stars.css */
+.stars-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.star-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.star-empty {
+  position: absolute;
+  inset: 0;
+  color: #fcd34d; /* gold-300 */
+}
+
+.star-fill-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.star-filled {
+  color: #fbbf24; /* gold-400 */
+}

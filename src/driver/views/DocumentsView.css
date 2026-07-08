@@ -1,0 +1,35 @@
+/* DocumentsView.css */
+.dv-container { display: flex; flex-direction: column; gap: 20px; }
+.dv-card { background: white; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; }
+.dv-summary-content { display: flex; flex-direction: column; gap: 16px; }
+@media (min-width: 640px) { .dv-summary-content { flex-direction: row; align-items: center; justify-content: space-between; } }
+
+.dv-label { font-size: 10px; font-weight: 600; text-transform: uppercase; color: #94a3b8; margin: 0; }
+.dv-title { font-size: 18px; font-weight: 800; color: #0f172a; margin: 2px 0 0 0; }
+.dv-desc { font-size: 14px; color: #64748b; margin: 4px 0 0 0; }
+
+.dv-actions { display: flex; align-items: center; gap: 16px; }
+.dv-progress-ring { position: relative; display: grid; place-items: center; width: 80px; height: 80px; }
+.dv-progress-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.dv-progress-text { font-size: 20px; font-weight: 800; color: #0f172a; }
+
+.dv-btn-upload { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 12px; background: #ef4444; color: white; font-weight: 700; border: none; cursor: pointer; }
+
+.dv-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 768px) { .dv-grid { grid-template-columns: 1fr 1fr; } }
+
+.dv-doc-content { display: flex; align-items: flex-start; gap: 12px; }
+.dv-doc-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: #f1f5f9; color: #334155; flex-shrink: 0; }
+.dv-doc-info { flex: 1; min-width: 0; }
+.dv-doc-header { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+.dv-doc-name { font-weight: 700; color: #0f172a; margin: 0; }
+.dv-doc-date { font-size: 12px; color: #64748b; margin: 2px 0 0 0; }
+
+.dv-chip { display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 600; }
+.dv-chip.verified { background: #fef2f2; color: #b91c1c; }
+.dv-chip.pending { background: #fef3c7; color: #b45309; }
+.dv-chip.expired, .dv-chip.rejected { background: #f1f5f9; color: #475569; }
+
+.dv-doc-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 12px; }
+.dv-expiry { font-size: 14px; font-weight: 700; color: #1e293b; margin: 2px 0 0 0; }
+.dv-btn-reupload { display: flex; align-items: center; gap: 4px; padding: 6px 10px; border-radius: 8px; background: #f1f5f9; color: #334155; font-size: 12px; font-weight: 600; border: none; cursor: pointer; }

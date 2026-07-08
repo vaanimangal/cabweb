@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 
-import { Sidebar } from "./components/Sidebar";
+
 import { TopBar } from "./components/TopBar";
 import { BottomNav } from "./components/BottomNav";
 import { ToastStack, useToasts } from "./components/Toast";
@@ -78,12 +78,7 @@ export default function DriverDashboard() {
   return (
     <div className="min-h-screen bg-ink-50 flex">
 
-      <Sidebar
-        view={view}
-        onNavigate={setView}
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-      />
+      
 
       <div className="flex-1">
 

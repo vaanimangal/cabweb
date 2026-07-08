@@ -1,0 +1,6 @@
+/* AnimatedNumber.css */
+/* Optional: ensures monospaced digits to prevent layout jumping */
+.animated-number {
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+}

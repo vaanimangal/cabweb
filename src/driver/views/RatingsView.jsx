@@ -2,94 +2,91 @@ import { Star, ThumbsUp, MessageSquare, TrendingUp } from 'lucide-react';
 import { reviews, ratingBreakdown, driverProfile } from '../data';
 import { Stars } from '../components/Stars';
 import { AnimatedNumber } from '../components/AnimatedNumber';
+import './RatingsView.css';
 
 export function RatingsView() {
   const total = ratingBreakdown.reduce((s, r) => s + r.count, 0);
 
   return (
-    <div className="space-y-5">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="card p-6 text-center bg-gradient-to-br from-ink-900 to-ink-800 text-white animate-slide-up">
-          <p className="text-xs font-semibold uppercase tracking-wide text-white/70">Overall Rating</p>
-          <p className="mt-2 text-6xl font-extrabold tracking-tight">
+    <div className="rv-container">
+      {/* Rating summary */}
+      <div className="rv-summary-grid">
+        <div className="rv-card rv-hero-card">
+          <p className="rv-label">Overall Rating</p>
+          <p className="rv-rating-val">
             <AnimatedNumber value={driverProfile.rating} decimals={2} />
           </p>
-          <div className="mt-2 flex justify-center">
+          <div className="rv-star-wrapper">
             <Stars value={driverProfile.rating} size={22} />
           </div>
-          <p className="mt-3 text-sm text-white/80 font-semibold">Based on {driverProfile.totalTrips.toLocaleString()} trips</p>
+          <p className="rv-footer">Based on {driverProfile.totalTrips.toLocaleString()} trips</p>
         </div>
 
-        <div className="card p-5 sm:p-6 lg:col-span-2">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="font-extrabold text-ink-900">Rating breakdown</h2>
-            <span className="chip bg-red-50 text-red-700">
-              <TrendingUp size={13} />
-              Top 5% driver
-            </span>
+        <div className="rv-card rv-breakdown-card">
+          <div className="rv-section-header">
+            <h2>Rating breakdown</h2>
+            <span className="rv-chip"><TrendingUp size={13} /> Top 5% driver</span>
           </div>
-          <div className="space-y-2.5">
+          <div className="rv-bars">
             {ratingBreakdown.map((r) => (
-              <div key={r.stars} className="flex items-center gap-3">
-                <div className="flex items-center gap-1 w-16 shrink-0">
-                  <span className="text-sm font-bold text-ink-700">{r.stars}</span>
-                  <Star size={14} className="text-gold-400" fill="currentColor" strokeWidth={0} />
+              <div key={r.stars} className="rv-bar-row">
+                <div className="rv-bar-label">
+                  <span className="rv-bar-stars">{r.stars}</span>
+                  <Star size={14} className="star" fill="currentColor" strokeWidth={0} />
                 </div>
-                <div className="flex-1 h-2.5 rounded-full bg-ink-100 overflow-hidden">
-                  <div className="h-full rounded-full bg-gradient-to-r from-gold-400 to-gold-500 transition-all duration-700" style={{ width: `${r.percent}%` }} />
+                <div className="rv-progress-bg">
+                  <div className="rv-progress-fill" style={{ width: `${r.percent}%` }} />
                 </div>
-                <span className="text-xs font-semibold text-ink-500 w-16 text-right">{r.count.toLocaleString()}</span>
+                <span className="rv-bar-count">{r.count.toLocaleString()}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 sm:gap-4">
+      {/* Highlights */}
+      <div className="rv-stats-grid">
         {[
-          { label: '5-star trips', value: ratingBreakdown[0].count, icon: ThumbsUp, tone: 'bg-red-50 text-red-700' },
-          { label: 'Total reviews', value: total, icon: MessageSquare, tone: 'bg-ink-100 text-ink-700' },
-          { label: 'Response rate', value: 98, suffix: '%', icon: Star, tone: 'bg-gold-50 text-gold-700' },
+          { label: '5-star trips', value: ratingBreakdown[0].count, icon: ThumbsUp, color: 'red' },
+          { label: 'Total reviews', value: total, icon: MessageSquare, color: 'ink' },
+          { label: 'Response rate', value: 98, suffix: '%', icon: Star, color: 'gold' },
         ].map((s) => {
           const Icon = s.icon;
           return (
-            <div key={s.label} className="card p-4 text-center">
-              <span className={`mx-auto grid place-items-center w-10 h-10 rounded-xl ${s.tone}`}>
-                <Icon size={18} />
-              </span>
-              <p className="mt-2 text-xl sm:text-2xl font-extrabold text-ink-900">
+            <div key={s.label} className="rv-card rv-stat-card">
+              <span className={`rv-stat-icon ${s.color}`}><Icon size={18} /></span>
+              <p className="rv-stat-val">
                 <AnimatedNumber value={s.value} suffix={s.suffix || ''} />
               </p>
-              <p className="text-[11px] sm:text-xs text-ink-500 font-semibold mt-0.5">{s.label}</p>
+              <p className="rv-stat-label">{s.label}</p>
             </div>
           );
         })}
       </div>
 
-      <div className="card overflow-hidden">
-        <div className="px-5 py-4 border-b border-ink-100">
-          <h2 className="font-extrabold text-ink-900">Recent reviews</h2>
-          <p className="text-sm text-ink-500 mt-0.5">What passengers are saying about you</p>
+      {/* Reviews list */}
+      <div className="rv-card rv-reviews-list">
+        <div className="rv-reviews-header">
+          <h2>Recent reviews</h2>
+          <p>What passengers are saying about you</p>
         </div>
-        <ul className="divide-y divide-ink-100">
-          {reviews.map((rev, i) => (
-            <li key={rev.id} className="px-5 py-4 hover:bg-ink-50/60 transition-colors animate-fade-in" style={{ animationDelay: `${i * 0.05}s` }}>
-              <div className="flex items-start gap-3">
-                <div className="grid place-items-center w-10 h-10 rounded-full bg-ink-100 text-ink-600 font-bold shrink-0">
-                  {rev.passengerName.split(' ').map((n) => n[0]).join('').slice(0, 2)}
+        <ul className="rv-reviews-items">
+          {reviews.map((rev) => (
+            <li key={rev.id} className="rv-review-item">
+              <div className="rv-review-avatar">
+                {rev.passengerName.split(' ').map((n) => n[0]).join('').slice(0, 2)}
+              </div>
+              <div className="rv-review-content">
+                <div className="rv-review-meta">
+                  <p className="rv-p-name">{rev.passengerName}</p>
+                  <span className="rv-p-date">{rev.date}</span>
                 </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <p className="font-bold text-ink-900 truncate">{rev.passengerName}</p>
-                    <span className="text-xs text-ink-400 font-medium shrink-0">{rev.date}</span>
-                  </div>
-                  <div className="flex items-center gap-2 mt-0.5">
-                    <Stars value={rev.rating} size={13} />
-                    <span className="text-xs font-bold text-ink-700">{rev.rating.toFixed(1)}</span>
-                  </div>
-                  <p className="text-sm text-ink-700 mt-2 leading-relaxed">"{rev.comment}"</p>
-                  <p className="text-xs text-ink-400 mt-1.5 font-medium">{rev.tripRoute}</p>
+                <div className="rv-review-rating">
+                  <Stars value={rev.rating} size={13} />
+                  <span>{rev.rating.toFixed(1)}</span>
                 </div>
+                <p className="rv-comment">"{rev.comment}"</p>
+                <p className="rv-route">{rev.tripRoute}</p>
               </div>
             </li>
           ))}

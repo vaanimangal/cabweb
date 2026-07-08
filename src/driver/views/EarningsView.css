@@ -1,0 +1,40 @@
+/* EarningsView.css */
+.ev-container { display: flex; flex-direction: column; gap: 20px; }
+.ev-card { background: white; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; }
+
+.ev-summary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (min-width: 1024px) { .ev-summary-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.ev-summary-card { display: flex; flex-direction: column; gap: 12px; }
+.ev-summary-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 12px; }
+.red .ev-summary-icon { background: #fef2f2; color: #b91c1c; }
+.ink .ev-summary-icon { background: #f1f5f9; color: #334155; }
+.gold .ev-summary-icon { background: #fef3c7; color: #b45309; }
+.ev-summary-val { font-size: 24px; font-weight: 800; color: #0f172a; margin: 0; }
+.ev-summary-label { font-size: 12px; font-weight: 600; color: #64748b; margin: 0; }
+
+.ev-control-row { display: flex; flex-direction: column; gap: 12px; }
+@media (min-width: 640px) { .ev-control-row { flex-direction: row; align-items: center; } }
+.ev-search-input { display: flex; align-items: center; gap: 8px; flex: 1; height: 44px; padding: 0 12px; border-radius: 12px; background: #f1f5f9; }
+.ev-search-input input { border: none; background: transparent; width: 100%; outline: none; }
+
+.ev-filter-group { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+.ev-btn { padding: 8px 16px; border-radius: 8px; background: #f1f5f9; border: none; font-weight: 600; color: #334155; cursor: pointer; }
+.ev-btn.active { background: #0f172a; color: white; }
+.ev-btn-export { display: flex; align-items: center; gap: 6px; background: #fef2f2; color: #b91c1c; }
+
+.ev-history-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 1px solid #e2e8f0; }
+.ev-list { list-style: none; padding: 0; margin: 0; }
+.ev-row { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid #f1f5f9; animation: fade-in 0.4s ease-out; }
+.ev-row-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: #f1f5f9; }
+.ev-row-content { flex: 1; min-width: 0; }
+.ev-row-main { display: flex; align-items: center; gap: 8px; font-weight: 700; }
+.ev-row-route { font-size: 12px; color: #64748b; margin: 4px 0; }
+.ev-row-meta { font-size: 11px; color: #94a3b8; margin: 0; }
+.ev-row-fare { text-align: right; font-weight: 800; }
+.ev-chip { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 6px; font-size: 10px; }
+.ev-cash { background: #f1f5f9; color: #334155; }
+.ev-card { background: #fef2f2; color: #b91c1c; }
+.ev-wallet { background: #fef3c7; color: #b45309; }
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }

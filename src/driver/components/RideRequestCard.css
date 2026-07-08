@@ -1,0 +1,41 @@
+.rrc-card { border-radius: 16px; border: 1px solid #e2e8f0; background: white; overflow: hidden; animation: slide-in 0.4s ease-out forwards; }
+@keyframes slide-in { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+
+.rrc-surge { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 6px; background: #fbbf24; color: #0f172a; font-size: 11px; font-weight: 800; }
+.rrc-body { padding: 16px; }
+
+.rrc-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.passenger-info { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.avatar-placeholder { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: #f1f5f9; color: #334155; }
+.passenger-name { font-weight: 800; color: #0f172a; margin: 0; }
+.rating-row { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #64748b; }
+.rating-val { font-weight: 600; color: #334155; }
+
+.fare-box { text-align: right; }
+.fare-val { font-size: 24px; font-weight: 900; color: #0f172a; margin: 0; }
+
+.route-container { display: flex; gap: 12px; margin-top: 16px; }
+.route-line { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+.dot-red { width: 10px; height: 10px; border-radius: 50%; background: #ef4444; outline: 4px solid #fee2e2; }
+.dot-gold { width: 10px; height: 10px; border-radius: 50%; background: #fbbf24; outline: 4px solid #fef3c7; }
+.line-connector { flex: 1; width: 2px; margin: 4px 0; background: linear-gradient(to bottom, #f87171, #fbbf24); border-radius: 999px; }
+.route-info { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+.address { font-size: 14px; font-weight: 600; color: #1e293b; margin: 0; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+.stat-box { background: #f8fafc; border: 1px solid #f1f5f9; padding: 10px; border-radius: 12px; }
+.stat-header { display: flex; align-items: center; gap: 6px; color: #94a3b8; font-size: 10px; font-weight: 600; text-transform: uppercase; }
+.stat-val { font-size: 14px; font-weight: 700; color: #1e293b; margin: 4px 0 0 0; }
+
+.payment-row { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+.chip { display: flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.chip.cash { color: #334155; background: #f1f5f9; }
+.chip.card { color: #b91c1c; background: #fef2f2; }
+.chip.wallet { color: #b45309; background: #fef3c7; }
+.tap-hint { font-size: 12px; color: #94a3b8; font-weight: 500; }
+
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; border-radius: 12px; border: none; font-weight: 800; cursor: pointer; font-size: 16px; }
+.btn-reject { background: #f1f5f9; color: #334155; }
+.btn-accept { background: #ef4444; color: white; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
+.label { font-size: 10px; font-weight: 600; text-transform: uppercase; color: #94a3b8; margin: 0; }

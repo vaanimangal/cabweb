@@ -1,0 +1,48 @@
+/* TopBar.css */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.topbar-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  height: 64px;
+}
+@media (min-width: 640px) { .topbar-content { padding: 0 24px; } }
+
+.menu-btn { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; border: none; background: transparent; color: #334155; cursor: pointer; }
+@media (min-width: 1024px) { .menu-btn { display: none; } }
+
+.title-area { min-width: 0; flex: 1; }
+.title { font-size: 16px; font-weight: 800; color: #0f172a; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (min-width: 640px) { .title { font-size: 18px; } }
+.subtitle { font-size: 12px; color: #64748b; font-weight: 500; margin: 0; display: none; }
+@media (min-width: 640px) { .subtitle { display: block; } }
+
+.search-bar { display: none; align-items: center; gap: 8px; height: 40px; padding: 0 12px; border-radius: 12px; background: #f1f5f9; color: #64748b; width: 224px; }
+@media (min-width: 768px) { .search-bar { display: flex; } }
+.search-bar input { border: none; background: transparent; outline: none; font-size: 14px; color: #1e293b; width: 100%; }
+
+.notify-btn { position: relative; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; border: none; background: transparent; color: #334155; cursor: pointer; }
+.notify-dot { position: absolute; top: 8px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: #ef4444; border: 2px solid white; }
+
+.status-btn { display: flex; align-items: center; gap: 8px; padding: 0 16px; height: 40px; border-radius: 8px; border: 2px solid; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+.status-btn.online { background: #ef4444; color: white; border-color: #ef4444; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
+.status-btn.offline { background: #0f172a; color: white; border-color: #0f172a; }
+
+.status-indicator-wrapper { position: relative; display: flex; align-items: center; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.status-dot.ping { animation: ping-animation 1.5s infinite; }
+@keyframes ping-animation { 75%, 100% { transform: scale(2); opacity: 0; } }
+
+.power-icon { opacity: 0.8; }
+
+.avatar { display: none; width: 40px; height: 40px; border-radius: 12px; object-fit: cover; border: 2px solid #f1f5f9; }
+@media (min-width: 640px) { .avatar { display: block; } }

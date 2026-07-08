@@ -1,0 +1,30 @@
+.rm-container { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 16px; background: #18181b; }
+.rm-svg { width: 100%; height: 100%; }
+
+.roads-main { stroke: rgba(255,255,255,0.1); stroke-width: 14; fill: none; stroke-linecap: round; }
+.roads-secondary { stroke: rgba(255,255,255,0.06); stroke-width: 8; fill: none; stroke-linecap: round; }
+
+.route-dash { animation: route-dash 2s linear infinite; }
+@keyframes route-dash { from { stroke-dashoffset: 20; } to { stroke-dashoffset: 0; } }
+
+.pulse-ring { animation: pulse 2s infinite; }
+@keyframes pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+
+.car-icon-wrapper { width: 100%; height: 100%; display: grid; place-items: center; color: #ef4444; }
+
+.rm-overlay-top { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; justify-content: space-between; }
+.status-badge, .live-badge { display: flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); color: white; font-size: 12px; font-weight: 600; }
+.dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot.online { background: #ef4444; animation: blink 1s infinite; }
+.dot.offline { background: #94a3b8; }
+@keyframes blink { 50% { opacity: 0.5; } }
+
+.rm-destination { position: absolute; bottom: 12px; left: 12px; right: 12px; display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 12px; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px); color: white; }
+.rm-destination .icon { color: #fbbf24; }
+.rm-destination .label { font-size: 10px; text-transform: uppercase; opacity: 0.5; }
+.rm-destination .value { font-size: 14px; font-weight: 700; }
+
+.rm-empty { position: absolute; inset: 0; display: grid; place-items: center; }
+.icon-box { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; background: rgba(255,255,255,0.1); color: white; margin: 0 auto 12px; }
+.rm-empty .title { font-weight: 700; color: white; }
+.rm-empty .subtitle { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 4px; }
