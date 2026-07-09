@@ -18,17 +18,19 @@ export default function Sidebar({
 }) {
   return (
     <>
-      {/* Mobile Overlay */}
+      {/* Overlay */}
       <div
         className={`sidebar-overlay ${open ? "show" : ""}`}
         onClick={onClose}
-      ></div>
+      />
 
       {/* Sidebar */}
       <aside className={`sidebar ${open ? "open" : ""}`}>
-        {/* Logo */}
+
+        {/* Header */}
         <div className="sidebar-header">
           <div className="sidebar-logo">
+
             <div className="logo-icon">
               <Car size={20} strokeWidth={2.5} />
             </div>
@@ -37,19 +39,26 @@ export default function Sidebar({
               <h2>Driver Hub</h2>
               <p>Cab Partner Portal</p>
             </div>
+
           </div>
 
-          <button className="sidebar-close" onClick={onClose}>
+          <button
+            className="sidebar-close"
+            onClick={onClose}
+          >
             <X size={22} />
           </button>
         </div>
 
         {/* Divider */}
-        <div className="sidebar-divider"></div>
+        <div className="sidebar-divider" />
 
         {/* Navigation */}
         <nav className="sidebar-nav">
-          <span className="menu-heading">MENU</span>
+
+          <span className="menu-heading">
+            MENU
+          </span>
 
           {NAV.map(({ key, label, icon: Icon }) => {
             const active = view === key;
@@ -60,6 +69,7 @@ export default function Sidebar({
                 className={`nav-link ${active ? "active" : ""}`}
                 onClick={() => {
                   onNavigate(key);
+
                   if (window.innerWidth < 992) {
                     onClose();
                   }
@@ -70,18 +80,26 @@ export default function Sidebar({
                   <span>{label}</span>
                 </div>
 
-                {active && <span className="active-dot"></span>}
+                {active && (
+                  <span className="active-dot"></span>
+                )}
               </button>
             );
           })}
+
+          {/* Pushes profile card to bottom */}
+          <div className="sidebar-spacer"></div>
+
         </nav>
 
-        {/* Bottom Profile */}
+        {/* Footer */}
         <div className="sidebar-footer">
+
           <button
             className="driver-card"
             onClick={() => {
               onNavigate("profile");
+
               if (window.innerWidth < 992) {
                 onClose();
               }
@@ -94,6 +112,7 @@ export default function Sidebar({
             />
 
             <div className="driver-details">
+
               <h4>{driverProfile.name}</h4>
 
               <p>
@@ -103,9 +122,13 @@ export default function Sidebar({
                   .slice(0, 2)
                   .join(" ")}
               </p>
+
             </div>
+
           </button>
+
         </div>
+
       </aside>
     </>
   );

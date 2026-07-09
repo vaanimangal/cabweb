@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 
-import Sidebar from "./components/Sidebar";
+import  Sidebar from "./components/Sidebar";
 import { TopBar } from "./components/TopBar";
 import { BottomNav } from "./components/BottomNav";
 import { ToastStack, useToasts } from "./components/Toast";
@@ -76,8 +76,12 @@ export default function DriverDashboard() {
   const meta = VIEW_META[view];
 
   return (
-    <div className="min-h-screen bg-ink-50 flex">
-
+    <div
+      className="min-h-screen bg-ink-50 flex"
+      style={{
+        marginTop: "80px", // Height of fixed navbar
+      }}
+    >
       <Sidebar
         view={view}
         onNavigate={setView}
@@ -85,8 +89,13 @@ export default function DriverDashboard() {
         onClose={() => setMenuOpen(false)}
       />
 
-      <div className="flex-1">
-
+      <div
+        className="flex-1"
+        style={{
+          marginLeft: "320px", // Change to 360px if your sidebar width is 360px
+          minHeight: "calc(100vh - 80px)",
+        }}
+      >
         <TopBar
           status={status}
           onToggleStatus={toggleStatus}
@@ -96,7 +105,6 @@ export default function DriverDashboard() {
         />
 
         <main className="p-6">
-
           {view === "home" && (
             <HomeView
               status={status}
@@ -108,24 +116,18 @@ export default function DriverDashboard() {
             />
           )}
 
-          {view === "earnings" && (
-            <EarningsView />
-          )}
+          {view === "earnings" && <EarningsView />}
 
           {view === "documents" && (
             <DocumentsView pushToast={push} />
           )}
 
-          {view === "ratings" && (
-            <RatingsView />
-          )}
+          {view === "ratings" && <RatingsView />}
 
           {view === "profile" && (
             <ProfileView pushToast={push} />
           )}
-
         </main>
-
       </div>
 
       <BottomNav
@@ -137,7 +139,6 @@ export default function DriverDashboard() {
         toasts={toasts}
         onDismiss={dismiss}
       />
-
     </div>
   );
 }
