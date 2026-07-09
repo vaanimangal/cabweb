@@ -1,0 +1,840 @@
+/* =========================================
+   GOOGLE FONT
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* =========================================
+   ROOT
+========================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.sidebar,
+.sidebar *{
+    font-family:'Poppins',sans-serif;
+}
+
+button{
+    font-family:inherit;
+    cursor:pointer;
+    border:none;
+    outline:none;
+}
+
+/* =========================================
+   OVERLAY
+========================================= */
+
+.sidebar-overlay{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+    backdrop-filter:blur(5px);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.35s ease;
+
+    z-index:999;
+}
+
+.sidebar-overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar{
+    position:fixed;
+
+    top:14px;
+    left:14px;
+    bottom:14px;
+
+    width:360px;
+
+    background:#080808;
+
+    border-radius:20px;
+
+    border:1px solid #1a1a1a;
+
+    display:flex;
+    flex-direction:column;
+
+    overflow:hidden;
+
+    z-index:1000;
+
+    transition:.3s;
+
+    box-shadow:none;
+}
+
+.sidebar.open{
+    transform:translateX(0);
+}
+
+/* Desktop */
+
+@media(min-width:992px){
+
+    .sidebar{
+
+        transform:translateX(0);
+
+        position:fixed;
+
+    }
+
+    .sidebar-overlay{
+        display:none;
+    }
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.sidebar-header{
+
+    height:90px;
+
+    padding:22px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    flex-shrink:0;
+}
+
+/* =========================================
+   BRAND
+========================================= */
+
+.sidebar-logo{
+    position: relative;
+    display:flex;
+    align-items:center;
+}
+
+.logo-icon{
+
+    width:52px;
+    height:52px;
+
+    border-radius:16px;
+
+    background:#ef4444;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fff;
+
+    box-shadow:
+        0 0 20px rgba(239,68,68,.45),
+        0 8px 24px rgba(239,68,68,.35);
+
+    transition:.3s;
+    z-index:2;
+}
+
+.logo-icon:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 30px rgba(239,68,68,.55),
+        0 12px 30px rgba(239,68,68,.45);
+}
+
+.logo-text{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    line-height:1;
+}
+
+.logo-text h2{
+    margin:0;
+    font-size:17px;
+    font-weight:700;
+    line-height:1.1;
+    color:#fff;
+}
+
+.logo-text p{
+    margin-top:4px;
+    font-size:11px;
+    font-weight:500;
+    line-height:1;
+    color:#8b8b8b;
+}
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+.sidebar-close{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:12px;
+
+    background:transparent;
+
+    color:#bdbdbd;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:.25s;
+}
+
+.sidebar-close:hover{
+
+    background:#1a1a1a;
+
+    color:#fff;
+}
+
+/* Hide on Desktop */
+
+@media(min-width:992px){
+
+    .sidebar-close{
+
+        display:none;
+    }
+}
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.sidebar-divider{
+
+    width:100%;
+
+    height:1px;
+
+    background:rgba(255,255,255,.06);
+
+    flex-shrink:0;
+}
+
+/* =========================================
+   NAV CONTAINER
+========================================= */
+
+.sidebar-nav{
+
+    flex:1;
+
+    padding:28px 18px;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+}
+
+/* Custom Scrollbar */
+
+.sidebar-nav::-webkit-scrollbar{
+
+    width:6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb{
+
+    background:#2c2c2c;
+
+    border-radius:20px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track{
+
+    background:transparent;
+}
+
+/* =========================================
+   MENU TITLE
+========================================= */
+
+.menu-heading{
+
+    display:block;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    color:#6e6e6e;
+
+    margin-bottom:18px;
+
+    padding-left:14px;
+
+    text-transform:uppercase;
+}
+/* =========================================
+   NAVIGATION BUTTONS
+========================================= */
+
+.nav-link{
+    width:100%;
+    height:58px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 18px;
+
+    margin-bottom:10px;
+
+    background:transparent;
+
+    border:none;
+    border-radius:18px;
+
+    color:#b5b5b5;
+
+    cursor:pointer;
+
+    transition:
+        background .25s ease,
+        color .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+/* Left Content */
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.nav-left svg{
+    flex-shrink:0;
+    transition:.25s ease;
+}
+
+.nav-left span{
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:.2px;
+}
+
+/* Hover */
+
+.nav-link:hover{
+
+    background:#171717;
+
+    color:#fff;
+
+    transform:translateX(4px);
+}
+
+.nav-link:hover svg{
+
+    transform:scale(1.08);
+
+    color:#ffffff;
+}
+
+/* Active */
+
+.nav-link.active{
+
+    background:#ef4444;
+
+    color:#fff;
+
+    box-shadow:
+        0 0 18px rgba(239,68,68,.30),
+        0 10px 30px rgba(239,68,68,.30);
+}
+
+.nav-link.active svg{
+
+    color:#fff;
+}
+
+/* Small white indicator */
+
+.active-dot{
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    flex-shrink:0;
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,.9);
+}
+
+/* Click Animation */
+
+.nav-link:active{
+
+    transform:scale(.98);
+}
+
+/* =========================================
+   FOCUS
+========================================= */
+
+.nav-link:focus-visible{
+
+    outline:2px solid #ef4444;
+
+    outline-offset:3px;
+}
+
+/* =========================================
+   ICON COLORS
+========================================= */
+
+.nav-link svg{
+
+    color:inherit;
+}
+
+/* =========================================
+   RIPPLE EFFECT
+========================================= */
+
+.nav-link::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-120%;
+
+    top:0;
+
+    width:120%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.08),
+        transparent
+    );
+
+    transition:.6s;
+}
+
+.nav-link:hover::before{
+
+    left:120%;
+}
+
+/* =========================================
+   LAST ITEM
+========================================= */
+
+.nav-link:last-child{
+
+    margin-bottom:0;
+}
+
+/* =========================================
+   SMOOTH ICON TRANSITION
+========================================= */
+
+.nav-link svg{
+
+    transition:
+        transform .25s ease,
+        color .25s ease;
+}
+
+/* =========================================
+   TEXT TRANSITION
+========================================= */
+
+.nav-left span{
+
+    transition:color .25s ease;
+}
+
+/* =========================================
+   ACTIVE SCALE
+========================================= */
+
+.nav-link.active:hover{
+
+    transform:translateX(2px);
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:991px){
+
+    .sidebar{
+
+        left:0;
+        top:0;
+        bottom:0;
+
+        width:310px;
+
+        border-radius:0 24px 24px 0;
+    }
+
+    .sidebar-header{
+
+        padding:22px 20px;
+    }
+
+    .sidebar-nav{
+
+        padding:24px 16px;
+    }
+}
+/* =========================================
+   FOOTER
+========================================= */
+
+.sidebar-footer{
+    padding:18px;
+    border-top:1px solid rgba(255,255,255,.06);
+    background:#0b0b0b;
+    flex-shrink:0;
+}
+
+/* =========================================
+   DRIVER CARD
+========================================= */
+
+.driver-card{
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:14px;
+
+    border:none;
+    border-radius:18px;
+
+    background:#141414;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:
+        background .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.driver-card:hover{
+
+    background:#1a1a1a;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 12px 28px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+.driver-card:active{
+
+    transform:scale(.98);
+}
+
+/* =========================================
+   AVATAR
+========================================= */
+
+.driver-avatar{
+
+    width:52px;
+    height:52px;
+
+    object-fit:cover;
+
+    border-radius:16px;
+
+    border:2px solid rgba(255,255,255,.08);
+
+    flex-shrink:0;
+
+    transition:.3s;
+}
+
+.driver-card:hover .driver-avatar{
+
+    border-color:#ef4444;
+
+    box-shadow:
+        0 0 15px rgba(239,68,68,.35);
+}
+
+/* =========================================
+   DRIVER INFO
+========================================= */
+
+.driver-details{
+
+    flex:1;
+
+    overflow:hidden;
+
+    text-align:left;
+}
+
+.driver-details h4{
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#fff;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.driver-details p{
+
+    margin-top:4px;
+
+    font-size:12px;
+
+    font-weight:500;
+
+    color:#8b8b8b;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+/* =========================================
+   FOOTER ANIMATION
+========================================= */
+
+.sidebar-footer{
+
+    animation:fadeUp .45s ease;
+}
+
+/* =========================================
+   SIDEBAR ANIMATION
+========================================= */
+
+.sidebar{
+
+    animation:sidebarFade .35s ease;
+}
+
+@keyframes sidebarFade{
+
+    from{
+        opacity:0;
+        transform:translateX(-20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+    }
+}
+
+/* =========================================
+   LOGO ANIMATION
+========================================= */
+
+.logo-icon{
+
+    animation:logoPop .5s ease;
+}
+
+@keyframes logoPop{
+
+    0%{
+
+        transform:scale(.7);
+        opacity:0;
+    }
+
+    60%{
+
+        transform:scale(1.08);
+    }
+
+    100%{
+
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* =========================================
+   NAV STAGGER
+========================================= */
+
+.nav-link{
+
+    animation:navSlide .45s ease both;
+}
+
+.nav-link:nth-child(2){animation-delay:.05s;}
+.nav-link:nth-child(3){animation-delay:.10s;}
+.nav-link:nth-child(4){animation-delay:.15s;}
+.nav-link:nth-child(5){animation-delay:.20s;}
+.nav-link:nth-child(6){animation-delay:.25s;}
+
+@keyframes navSlide{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(-18px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+    }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:991px){
+
+    .sidebar{
+
+        width:300px;
+
+        left:0;
+        top:0;
+        bottom:0;
+
+        border-radius:0 24px 24px 0;
+    }
+
+    .sidebar-header{
+
+        height:82px;
+    }
+
+    .logo-text h2{
+
+        font-size:18px;
+    }
+
+    .nav-link{
+
+        height:54px;
+    }
+
+    .driver-avatar{
+
+        width:46px;
+        height:46px;
+    }
+}
+
+/* =========================================
+   SMALL DEVICES
+========================================= */
+
+@media(max-width:480px){
+
+    .sidebar{
+
+        width:280px;
+    }
+
+    .logo-text h2{
+
+        font-size:17px;
+    }
+
+    .logo-text p{
+
+        font-size:11px;
+    }
+
+    .driver-details h4{
+
+        font-size:14px;
+    }
+
+    .driver-details p{
+
+        font-size:11px;
+    }
+}

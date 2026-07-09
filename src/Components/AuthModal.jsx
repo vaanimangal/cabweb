@@ -61,7 +61,7 @@ function AuthModal({ type, onClose, onSuccess }) {
       const result = await signInWithPhoneNumber(
         auth,
         `+91${mobile}`,
-        window.recaptchaVerifier
+        appVerifier
       );
 
       setConfirmationResult(result);
@@ -98,7 +98,7 @@ function AuthModal({ type, onClose, onSuccess }) {
       if (isRegister) {
         response = await registerUser({
           name,
-          phone: mobile,
+          phone: `+91${mobile}`,
           ...(isDriver && {
             role: "driver",
             vehicleType,
@@ -107,7 +107,7 @@ function AuthModal({ type, onClose, onSuccess }) {
         });
       } else {
         response = await loginUser({
-          phone: mobile,
+         phone: `+91${mobile}`,
         });
       }
 
@@ -124,15 +124,25 @@ function AuthModal({ type, onClose, onSuccess }) {
       if (isDriver) {
         navigate("/driver-dashboard");
       }
-    } catch (error) {
-      console.error(error);
+    } 
+    catch (error) {
 
-      if (error.response) {
-        alert(error.response.data.message);
-      } else {
-        alert("Something went wrong.");
-      }
-    }
+  console.log("FULL ERROR:", error);
+
+  console.log("MESSAGE:", error.message);
+
+  console.log("STACK:", error.stack);
+
+  console.log("RESPONSE:", error.response);
+
+  console.log("DATA:", error.response?.data);
+
+  alert(
+    error.response?.data?.message ||
+    error.message ||
+    "Unknown Error"
+  );
+}
   };
 
   return (
