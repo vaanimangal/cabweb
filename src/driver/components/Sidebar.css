@@ -146,7 +146,7 @@ button{
 
     margin-top:5px;
 
-    color:#8c8c8c;
+    color:#000000;
 
     font-size:12px;
 
@@ -168,7 +168,7 @@ button{
 
     background:transparent;
 
-    color:#bdbdbd;
+    color:#000000;
 
     transition:.25s;
 }
@@ -213,7 +213,7 @@ button{
 
 .menu-heading{
 
-    color:#7d7d7d;
+    color:#312f2f;
 
     font-size:13px;
 
@@ -255,7 +255,7 @@ button{
 
     background:transparent;
 
-    color:#d4d4d4;
+    color:#2a2828;
 
     border-radius:18px;
 
@@ -300,7 +300,7 @@ button{
 
 .nav-link:hover{
 
-    background:#151515;
+    background:#050505;
 
     color:#fff;
 }
