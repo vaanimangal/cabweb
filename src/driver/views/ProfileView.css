@@ -1,5 +1,5 @@
 /* ProfileView.css */
-.pv-container { display: flex; flex-direction: column; gap: 20px; }
+.pv-container { display: flex; flex-direction: column; gap: 20px; padding: 24px; }
 .pv-card { background: white; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; }
 
 .pv-header-banner { height: 96px; background: linear-gradient(135deg, #0f172a, #1e293b); }

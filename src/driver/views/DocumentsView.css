@@ -1,5 +1,5 @@
 /* DocumentsView.css */
-.dv-container { display: flex; flex-direction: column; gap: 20px; }
+.dv-container { display: flex; flex-direction: column; gap: 20px; padding: 24px; }
 .dv-card { background: white; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; }
 .dv-summary-content { display: flex; flex-direction: column; gap: 16px; }
 @media (min-width: 640px) { .dv-summary-content { flex-direction: row; align-items: center; justify-content: space-between; } }

@@ -1,5 +1,12 @@
 /* HomeView.css */
-.hv-container { display: flex; flex-direction: column; gap: 20px; }
+/* HomeView.css */
+.hv-container { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px; 
+  /* Added padding for space on all sides */
+  padding: 24px; 
+}
 .hv-card { background: white; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; }
 
 /* Banner */

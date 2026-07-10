@@ -1,5 +1,5 @@
 /* EarningsView.css */
-.ev-container { display: flex; flex-direction: column; gap: 20px; }
+.ev-container { display: flex; flex-direction: column; gap: 20px; padding: 24px; }
 .ev-card { background: white; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; }
 
 .ev-summary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }

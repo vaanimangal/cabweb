@@ -1,7 +1,7 @@
 .hero {
 background: linear-gradient(135deg, #7f1d1d, #EF4444);
   color: white;
-  padding: 60px 8%;
+  padding: 100px 8% 60px 8%;
 }
 
 .hero-content {
