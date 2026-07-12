@@ -1,149 +1,550 @@
-# 🚖 CabWeb
+# 🚖 CabWeb — Smart Cab Booking Platform
 
-A modern full-stack cab booking web application built using the MERN Stack with Firebase Authentication. This platform provides a clean, responsive, and intuitive cab booking experience where users can securely register using OTP, customize rides, manage profiles, and book trips.
+<div align="center">
+
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
+![Node](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js)
+![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb)
+![Firebase](https://img.shields.io/badge/Firebase-OTP-FFCA28?style=for-the-badge&logo=firebase)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=for-the-badge&logo=javascript)
+
+### 🚖 A Modern MERN Stack Ride Booking Platform with Passenger & Driver Modules
+
+Book rides securely using OTP authentication, manage bookings, and provide a complete dashboard experience for both passengers and drivers.
+
+</div>
 
 ---
 
-# 📌 Project Overview
+# 📖 About The Project
 
-CabWeb is designed to simplify cab booking while delivering a professional user experience.
+**CabWeb** is a full-stack cab booking platform inspired by modern ride-hailing applications such as **Uber** and **Ola**. Built using the **MERN Stack** and **Firebase Phone Authentication**, the platform provides a secure, responsive, and user-friendly booking experience.
 
-The application allows users to:
+Unlike a basic cab booking website, CabWeb separates the platform into two dedicated modules:
 
-- Register/Login using Mobile OTP
+### 👤 Passenger Portal
+
+Passengers can
+
+- Register & Login using OTP
 - Book One-way or Round Trips
 - Choose Vehicle Type
 - Select Fuel Preference
-- Select Preferred Driver Language
-- Select Accessibility Preferences (Pet-Friendly or Wheelchair-Friendly)
-- View Driver Searching Interface
-- Manage Personal Profile
+- Select Driver Language
+- Choose Accessibility Options
+- Track Booking Progress
 - View Booking History
-- Securely store user data in MongoDB
+- Manage Personal Profile
+
+### 🚗 Driver Portal
+
+Driver partners receive a dedicated dashboard to efficiently manage their daily operations.
+
+Drivers can
+
+- Toggle Online / Offline Availability
+- Receive Ride Requests
+- Accept or Reject Trips
+- View Earnings
+- Monitor Weekly Performance
+- Upload Important Documents
+- Manage Ratings & Reviews
+- Update Profile Information
 
 ---
 
-# ✨ Features
+# 🎯 Project Objectives
+
+CabWeb aims to provide a complete ride-booking ecosystem by combining modern UI/UX with secure backend architecture.
+
+The project focuses on:
+
+- Delivering seamless ride booking experience
+- Secure mobile OTP authentication
+- Professional driver management system
+- Responsive design across all devices
+- Efficient MongoDB data management
+- Scalable MERN architecture
+- Easy future integration with Google Maps, Payments, and Socket.IO
+
+---
+
+# ✨ Key Highlights
+
+- 🔐 Firebase Phone OTP Authentication
+- 🚖 One-way & Round-trip Booking
+- 🚗 Dedicated Driver Dashboard
+- 📱 Fully Responsive Interface
+- 📊 Weekly Driver Performance Analytics
+- 💰 Earnings Overview
+- ⭐ Passenger Ratings & Reviews
+- 📄 DigiLocker-inspired Document Management
+- 📖 Booking History
+- 👤 User Profile Management
+- ⚡ RESTful Express APIs
+- 🍃 MongoDB Database Integration
+- 🎨 Modern and Clean User Interface
+
+---
+
+# 🚀 Passenger Features
 
 ## 🔐 Authentication
 
-- Firebase Phone OTP Authentication
-- Secure Login & Registration
+CabWeb provides secure user authentication using **Firebase Phone Authentication**.
+
+### Features
+
+- Mobile Number Registration
+- Mobile OTP Verification
+- Secure Login
+- Automatic Session Management
 - Persistent Login using Local Storage
-- Automatic Session Handling
+- Invisible Google reCAPTCHA
+- Secure Firebase Authentication
 
 ---
 
-## 🚖 Cab Booking
+## 🚖 Smart Ride Booking
 
-Users can:
+Passengers can conveniently customize every ride before confirming the booking.
 
-- Choose Trip Type
-  - One Way
-  - Round Trip
+### Trip Types
+
+- One-way Trip
+- Round Trip
+
+### Pickup & Destination
 
 - Pickup Location
+- Destination Location
 
-- Destination
+### Date & Time
 
-- Trip Start Date & Time
-
-- Trip End Date & Time
-
-- Vehicle Selection
-
-  - Sedan
-  - SUV
-  - Innova
-  - Hatchback
-
-- Fuel Preference
-
-  - Petrol
-  - Diesel
-  - CNG
-  - Electric
-
-- Driver Language
-
-  - English
-  - Hindi
-  - Both English and Hindi
-
-- Accessibility
-
-  - Pet Friendly
-  - Wheelchair Friendly
+- Trip Start Date
+- Trip End Date
+- Flexible Scheduling
 
 ---
 
-## 👤 User Dashboard
+## 🚘 Vehicle Selection
 
-- Professional User Profile
-- Edit Name
-- Member Since Information
-- Logout
+Passengers can choose from multiple vehicle categories.
+
+| Vehicle | Capacity |
+|----------|----------|
+| 🚗 Sedan | 4 Seats |
+| 🚙 SUV | 7 Seats |
+| 🚐 Innova | 7 Seats |
+| 🚕 Hatchback | 4 Seats |
+
+---
+
+## ⛽ Fuel Preferences
+
+CabWeb allows users to select their preferred vehicle fuel type.
+
+- Petrol
+- Diesel
+- CNG
+- Electric
+
+---
+
+## 🌐 Driver Language
+
+Passengers may communicate comfortably by selecting a preferred driver language.
+
+Available options
+
+- English
+- Hindi
+- Hinglish
+
+---
+
+## ♿ Accessibility Preferences
+
+Designed for inclusive transportation.
+
+Options include
+
+- 🐶 Pet Friendly
+- ♿ Wheelchair Friendly
+
+---
+
+## 🔍 Driver Searching Experience
+
+After booking, passengers are redirected to an animated driver searching screen.
+
+Features include
+
+- Searching Animation
+- Ride Confirmation
+- Smooth Loading Experience
+- Estimated Waiting Time
+- Booking Confirmation Flow
+
+---
+
+## 👤 User Profile
+
+Passengers have access to a personalized profile page.
+
+Includes
+
 - Profile Avatar
+- Full Name
+- Member Since
+- Logout
+- Future Profile Editing Support
 
 ---
 
 ## 📖 My Bookings
 
-Users can
+Users can easily manage previous rides.
 
-- View all bookings
+Displays
+
 - Booking Status
-- Pickup & Destination
-- Vehicle Details
+- Pickup Location
+- Destination
+- Vehicle Type
 - Fuel Type
-- Booking Date
-- Fare (Future Integration)
+- Language Preference
+- Accessibility Preference
+- Booking Date & Time
+- Fare (Backend Ready)
+- Booking Details Popup
+
+---
+# 🚗 Driver Dashboard
+
+CabWeb includes a dedicated **Driver Portal** designed to help driver partners efficiently manage rides, earnings, documents, and account information through a modern dashboard interface.
+
+The dashboard follows a clean, responsive layout inspired by professional fleet management systems, ensuring an intuitive experience across desktop and mobile devices.
 
 ---
 
-## 🚗 Driver Searching Screen
+# 🎯 Driver Dashboard Features
 
-Interactive driver search interface featuring
+## 🟢 Online / Offline Availability
 
-- Animated driver search experience
-- Estimated waiting time
-- Smooth ride confirmation flow
+Drivers can control their availability with a single click.
+
+### Features
+
+- One-click Online/Offline Toggle
+- Real-time Status Indicator
+- Toast Notifications
+- Prevents Ride Requests while Offline
+- Smooth Status Transition
 
 ---
 
-## 💾 Database
+## 📊 Weekly Performance Dashboard
 
-MongoDB stores
+A GitHub-inspired activity graph provides a visual representation of the driver's weekly performance.
 
-### Users
+The graph helps drivers monitor consistency and productivity.
 
-- Name
+Displays
+
+- Daily Activity
+- Weekly Driving Performance
+- Ride Completion Pattern
+- Performance Overview
+
+Future Scope
+
+- Monthly Analytics
+- Yearly Reports
+- Heatmap Statistics
+
+---
+
+## 💰 Earnings Overview
+
+The dashboard provides quick financial insights without opening separate reports.
+
+Includes
+
+### Daily Earnings
+
+- Total Earnings Today
+- Completed Trips Today
+
+### Weekly Summary
+
+- Weekly Income
+- Weekly Completed Trips
+
+### Overall Statistics
+
+- Total Earnings
+- Total Completed Rides
+- Average Daily Earnings
+
+---
+
+## 🚖 Ride Request Management
+
+When drivers are online, incoming ride requests appear instantly on the dashboard.
+
+Each request includes
+
+- Passenger Pickup Location
+- Destination
+- Vehicle Type
+- Trip Type
+- Estimated Fare
+- Estimated Distance
+
+Drivers can
+
+- ✅ Accept Ride
+- ❌ Reject Ride
+
+Future backend integration will automatically assign accepted rides.
+
+---
+
+## 📜 Ride History
+
+Drivers can review all completed trips.
+
+Ride history displays
+
+- Pickup Location
+- Destination
+- Passenger Information
+- Fare
+- Ride Date
+- Ride Time
+- Trip Status
+
+Future updates
+
+- Search History
+- Export Ride Reports
+- Monthly Ride Summary
+
+---
+
+## 📄 Document Management
+
+Inspired by **DigiLocker**, drivers can securely manage important documents from one centralized location.
+
+Supported Documents
+
+- Driving License
+- Vehicle Registration Certificate (RC)
+- Insurance Certificate
+- Pollution Certificate (PUC)
+- Aadhaar / Identity Proof
+
+Future Enhancements
+
+- Document Upload
+- Expiry Reminder
+- Verification Status
+- Cloud Storage
+
+---
+
+## ⭐ Ratings & Reviews
+
+Passenger feedback helps drivers improve service quality.
+
+Displays
+
+- Overall Rating
+- Average Star Rating
+- Passenger Reviews
+- Latest Feedback
+- Review History
+
+Future Scope
+
+- Rating Analytics
+- Performance Score
+- Customer Satisfaction Index
+
+---
+
+## 👤 Profile Settings
+
+Drivers can manage their account information directly from the dashboard.
+
+Profile includes
+
+- Profile Photo
+- Full Name
+- Contact Number
+- Vehicle Information
+- Vehicle Registration Number
+- Driving License Details
+
+Future Features
+
+- Change Password
+- Profile Editing
+- Bank Account Information
+- Emergency Contact
+
+---
+
+## 📱 Responsive Dashboard
+
+The Driver Dashboard is optimized for different screen sizes.
+
+### Desktop
+
+- Sidebar Navigation
+- Large Dashboard Cards
+- Full Analytics View
+
+### Mobile
+
+- Bottom Navigation
+- Responsive Sidebar
+- Compact Cards
+- Touch-Friendly Controls
+
+---
+
+## 🎨 UI Highlights
+
+The Driver Dashboard features a modern interface with smooth interactions.
+
+Highlights
+
+- Responsive Layout
+- Interactive Dashboard Cards
+- Clean Sidebar Navigation
+- Professional Top Navigation
+- Bottom Navigation for Mobile
+- Toast Notifications
+- Smooth Animations
+- Rounded Modern Components
+- Minimal Dashboard Design
+- Professional Color Palette
+
+---
+
+# 💾 Database Design
+
+CabWeb uses **MongoDB Atlas** to securely store passenger, driver, and booking information.
+
+---
+
+## 👤 User Collection
+
+Stores registered passenger information.
+
+Fields
+
+- Full Name
 - Mobile Number
 - Firebase UID
-- Created Date
-
-### Bookings
-
-- Pickup
-- Destination
-- Trip Type
-- Vehicle
-- Fuel
-- Language
-- Accessibility
-- Start Time
-- End Time
-- Booking Status
-- Fare
-- User Reference
+- Registration Date
 
 ---
 
-# 🛠 Tech Stack
+## 🚗 Driver Collection *(Ready for Backend Integration)*
+
+Stores driver partner details.
+
+Fields
+
+- Driver Name
+- Mobile Number
+- Vehicle Type
+- Vehicle Number
+- Driving License Number
+- Driver Status (Online / Offline)
+- Average Rating
+- Documents
+- Total Earnings
+- Completed Trips
+
+---
+
+## 📖 Booking Collection
+
+Stores complete ride information.
+
+Fields
+
+- Pickup Location
+- Destination
+- Trip Type
+- Vehicle Type
+- Fuel Preference
+- Driver Language
+- Accessibility Preference
+- Start Date & Time
+- End Date & Time
+- Booking Status
+- Estimated Fare
+- User Reference
+- Driver Reference *(Future Integration)*
+
+---
+
+# 🔄 System Workflow
+
+```text
+Passenger Registration/Login
+            │
+            ▼
+ Firebase OTP Authentication
+            │
+            ▼
+ User Stored in MongoDB
+            │
+            ▼
+ Fill Trip Details
+            │
+            ▼
+ Vehicle Selection
+            │
+            ▼
+ Booking Confirmation
+            │
+            ▼
+ Driver Searching Screen
+            │
+            ▼
+ Driver Accepts Request
+            │
+            ▼
+ Ride Starts
+            │
+            ▼
+ Ride Completed
+            │
+            ▼
+ Booking Stored in MongoDB
+            │
+            ▼
+ Passenger Booking History
+            │
+            ▼
+ Driver Earnings Updated
+```
+
+---
+
+# 🛠 Technology Stack
 
 ## Frontend
 
 - React.js
+- JavaScript (ES6)
 - React Router DOM
 - CSS3
 - React Icons
@@ -154,13 +555,13 @@ MongoDB stores
 
 - Node.js
 - Express.js
+- REST APIs
 
 ---
 
 ## Database
 
 - MongoDB Atlas
-- Mongoose
 
 ---
 
@@ -168,225 +569,19 @@ MongoDB stores
 
 - Firebase Authentication
 - Phone OTP Verification
-- Invisible reCAPTCHA
 
 ---
 
-# 📂 Project Structure
+## Development Tools
 
-```
-cabweb
-│
-├── backend
-│   ├── config
-│   ├── controllers
-│   ├── models
-│   ├── routes
-│   ├── server.js
-│   └── .env
-│
-├── src
-│   ├── Components
-│   ├── Pages
-│   ├── firebase
-│   ├── styles
-│   ├── App.js
-│   └── index.js
-│
-├── public
-│
-├── package.json
-└── README.md
-```
+- Visual Studio Code
+- Git
+- GitHub
+- MongoDB Compass
+- Firebase Console
 
 ---
+### This project is intended for educational and portfolio purposes. 
 
-# ⚙ Installation
-
-## Clone Repository
-
-```bash
-git clone https://github.com/vaanimangal/cabweb.git
-```
-
-Move inside project
-
-```bash
-cd cabweb
-```
-
----
-
-# 📦 Install Frontend Dependencies
-
-```bash
-npm install
-```
-
----
-
-# 📦 Install Backend Dependencies
-
-```bash
-cd backend
-
-npm install
-```
-
----
-
-# 🔑 Environment Variables
-
-Create a `.env` file inside the **backend** folder.
-
-Example:
-
-```env
-PORT=5000
-
-MONGO_URI=your_mongodb_connection_string
-
-JWT_SECRET=your_secret_key
-```
-
-Firebase configuration should be added inside
-
-```
-src/firebase/firebase.js
-```
-
----
-
-# ▶ Running the Frontend
-
-From project root
-
-```bash
-npm start
-```
-
-Runs on
-
-```
-http://localhost:3000
-http://192.168.1.8:3000
-```
-
----
-
-# ▶ Running the Backend
-
-Open another terminal
-
-```bash
-cd backend
-
-npm start
-```
-
-Runs on
-
-```
-http://localhost:5000
-```
-
----
-
-# 🚀 Current Workflow
-
-```
-Register/Login
-        │
-        ▼
-Firebase OTP Authentication
-        │
-        ▼
-User Stored in MongoDB
-        │
-        ▼
-Fill Trip Details
-        │
-        ▼
-Select Vehicle
-        │
-        ▼
-Driver Searching Screen
-        │
-        ▼
-Booking (MongoDB Integration)
-        │
-        ▼
-My Bookings
-        │
-        ▼
-View Booking History
-```
-
----
-
-# 📱 Screens Included
-
-- Landing / home Page
-- Login
-- Register
-- OTP Verification
-- Booking Form section under home page
-- Vehicle Selection under home page
-- Driver Loading page
-- User Profile dropdown
-- User Profile Page
-- My Bookings Page
-
----
-
-# 🔒 Security
-
-- Firebase OTP Authentication
-- MongoDB Data Storage
-- Express API
-- Environment Variables
-- Input Validation
-
----
-
-# 🌟 Future Enhancements
-
-- Google Maps Integration
-- Live Driver Tracking
-- Driver Dashboard
-- Ride Cancellation
-- Driver Ratings
-- Ride History Analytics
-- Push Notifications
-- Wallet System
-- Coupon Codes
-- Admin Dashboard
-- Real-time Driver Matching using Socket.io
-
----
-
-#  Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-# 📷 Project Preview
-
-> A modern, responsive cab booking platform built using the MERN Stack with Firebase Authentication, offering a seamless ride-booking experience through an intuitive user interface.
-
----
-
----
-
-# 📄 License
-
-This project is intended for educational and portfolio purposes.
-
-# 👩‍💻 Developed By
-
-**Vaani Mangal**
-
-A Full Stack Web Development project demonstrating modern MERN development practices, Firebase Authentication, REST APIs, responsive UI design, and MongoDB integration.
-
----
-
-## ⭐ If you like this project, don't forget to star the repository.
+## 👩‍💻 Developed By
+Vaani Mangal
